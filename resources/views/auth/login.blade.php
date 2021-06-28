@@ -52,5 +52,16 @@
                 </x-button>
             </div>
         </form>
+        
+        <form method="GET" action="{{ route('register') }}">
+
+            <div class="flex items-center justify-end mt-4">
+                <p>ou </p>
+                <x-button class="ml-3" style="background: #ff4d94">
+                    {{ __('Registrar-se') }}
+                </x-button>
+            </div>
+            
+        </form>
     </x-auth-card>
 </x-guest-layout>

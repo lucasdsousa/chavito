@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\PedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,10 @@ require __DIR__.'/auth.php';
 Route::get('/', [ImageController::class, 'show']);
 Route::get('/Catalogo', [ImageController::class, 'catalogo']);
 Route::get('/Do-seu-jeito', function(){return view('personalizar');});
+
+Route::get('/Pedido/{slug}', [PedidoController::class, 'create'])->middleware(['auth'])->name('pedido_new');
+Route::post('/Pedido/{slug}', [PedidoController::class, 'store'])->name('pedido');
+
+Route::get('/Pagamento', function(){
+    return view('pagamento')->name('pagamento');
+});

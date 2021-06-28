@@ -13,7 +13,7 @@
         
                 @if (Route::has('login'))
                         @auth
-                            <li><a class="grey-text text-darken-3" href="{{ url('/dashboard') }}" >Dashboard</a></li>
+                            <li><a class="grey-text text-darken-3" href="{{ url('/dashboard') }}" style="font-weight:bold">Área do Cliente</a></li>
                         @else
                             <li><a class="grey-text text-darken-3" href="{{ route('login') }}" style="font-weight:bold">Login</a></li>
 

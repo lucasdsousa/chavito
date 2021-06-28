@@ -15,7 +15,7 @@
                             <p>{{ $i->descricao }}</p>
                         </div>
                         <div class="card-action">
-                            <a class="waves-effect waves-light btn-small pink" href="#" style="font-weight: bold">Peça Já o Seu!</a>
+                            <a class="waves-effect waves-light btn-small pink" href="/Pedido/{{$i->slug}}" style="font-weight: bold">Peça Já o Seu!</a>
                         </div>
                     </div>
                 </div>       
