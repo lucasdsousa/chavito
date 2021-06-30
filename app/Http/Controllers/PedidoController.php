@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp;
 use GuzzleHttp\Client;
+use MercadoPago;
 
 class PedidoController extends Controller
 {
@@ -31,15 +32,14 @@ class PedidoController extends Controller
     public function create(String $slug)
     {
 
+        $token = 'TEST-8321604311384550-102920-d200b79d81f94c808c742037c07a8521-69839783';
+
         require $_SERVER['DOCUMENT_ROOT'].'/../vendor/autoload.php';
-
-        MercadoPago\SDK::setAccessToken('PROD_ACCESS_TOKEN');    
-
-        $pedido = new Pedido();
-
+        // Adicione as credenciais
+        MercadoPago\SDK::setAccessToken($token);
         // Cria um objeto de preferência
         $preference = new MercadoPago\Preference();
-
+        
         // Cria um item na preferência
         $item = new MercadoPago\Item();
         $item->title = 'Meu produto';
@@ -48,9 +48,11 @@ class PedidoController extends Controller
         $preference->items = array($item);
         $preference->save();
 
+
+
         $image = DB::table('images')->where('slug', '=', $slug)->get()->first();
 
-        return view('form_pedido', compact('image', 'slug', 'preference'));
+        return view('form_pedido', compact('image', 'slug', 'preference', 'token'));
     }
 
     /**

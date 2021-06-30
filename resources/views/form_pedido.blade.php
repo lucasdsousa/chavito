@@ -63,17 +63,30 @@
         <form method="GET" action="/">
 
             <div class="flex items-center justify-end mt-4">
-                <x-button class="ml-3" style="background: #ff4d94">
+                <x-button class="ml-3" style="background: #00ffff">
                     {{ __('Cancelar') }}
                 </x-button>
             </div>
-            
         </form>
-
-        <script
-        src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-        data-preference-id="{{$preference->id}}">
-        </script>
+        // SDK MercadoPago.js V2
+        <script src="https://sdk.mercadopago.com/js/v2"></script>
+        <script>
+            // Adicione as credenciais do SDK
+              const mp = new MercadoPago('{{$token}}', {
+                    locale: 'es-AR'
+              });
+            
+              // Inicialize o checkout
+              mp.checkout({
+                  preference: {
+                      id: '{{$preference->id}}'
+                  },
+                  render: {
+                        container: '.cho-container', // Indica onde o botão de pagamento será exibido
+                        label: 'Pagar', // Muda o texto do botão de pagamento (opcional)
+                  }
+            });
+            </script>
 
     </x-auth-card>
 </x-guest-layout>
