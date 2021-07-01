@@ -34,6 +34,8 @@ class PedidoController extends Controller
 
         $token = 'TEST-8321604311384550-102920-d200b79d81f94c808c742037c07a8521-69839783';
 
+        $chav = DB::table('images')->where('slug', '=', $slug)->get()->first();
+
         require $_SERVER['DOCUMENT_ROOT'].'/../vendor/autoload.php';
         // Adicione as credenciais
         MercadoPago\SDK::setAccessToken($token);
@@ -42,13 +44,11 @@ class PedidoController extends Controller
         
         // Cria um item na preferência
         $item = new MercadoPago\Item();
-        $item->title = 'Meu produto';
+        $item->title = $chav->title;
         $item->quantity = 1;
-        $item->unit_price = 75.56;
+        $item->unit_price = $chav->valor;
         $preference->items = array($item);
         $preference->save();
-
-
 
         $image = DB::table('images')->where('slug', '=', $slug)->get()->first();
 
@@ -74,6 +74,8 @@ class PedidoController extends Controller
         if ($validator->fails()){
             return redirect('/Pedido')->withErrors($validator);
         }
+
+        $pedido = new Pedido();
 
         $pedido->user = Auth::id();
         $pedido->image = $request->file('image')->store('imagem_pedido', 'public');

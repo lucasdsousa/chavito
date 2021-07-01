@@ -12,6 +12,7 @@
                         </div>
                         <div class="card-content">
                             <span class="card-title">{{ $i->title }}</span>
+                            <p style="font-weight:bold">Preço: R$ {{ $i->valor }}</p>
                             <p>{{ $i->descricao }}</p>
                         </div>
                         <div class="card-action">
