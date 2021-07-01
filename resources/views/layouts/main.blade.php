@@ -25,7 +25,7 @@
             }
         </style>
     </head>
-    <body class="antialiased">
+    <body class="antialiased" style="background-image: {{ asset('images/background.jpg') }}">
     
         @component('components.navbar')@endcomponent
         @yield('content')

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="carousel" style="margin-top: -300px; height:750px">
+<div class="carousel container" style="margin-top: -300px; height:750px">
     @foreach($image as $i)
     
         <a class="carousel-item" href="#two!" style="width: 30%"><img src="{{ asset($i->image_name) }}" style="border-radius: 10%"></a>
