@@ -16,7 +16,7 @@ class EnderecoController extends Controller
      */
     public function index()
     {
-        //return view('endereco');
+        //
     }
 
     /**
@@ -26,7 +26,6 @@ class EnderecoController extends Controller
      */
     public function create()
     {
-        print_r(Auth::id());
         return view('endereco');
     }
 
@@ -39,8 +38,14 @@ class EnderecoController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'rua' => 'required'
-        ])
+            'cep' => 'required',
+            'rua' => 'required',
+            'numero' => 'required',
+            'bairro' => 'required',
+            'cidade' => 'required',
+            'uf' => 'required'
+        ]);
+
         $endereco = new Endereco();
 
         $endereco->user_id = Auth::id();
@@ -72,9 +77,9 @@ class EnderecoController extends Controller
      * @param  \App\Models\Endereco  $endereco
      * @return \Illuminate\Http\Response
      */
-    public function edit(Endereco $endereco)
+    public function edit($id)
     {
-        //
+        return view('alterar_endereco');
     }
 
     /**
@@ -84,9 +89,20 @@ class EnderecoController extends Controller
      * @param  \App\Models\Endereco  $endereco
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Endereco $endereco)
+    public function update(Request $request, $id)
     {
-        //
+        $endereco = Endereco::find($id);
+
+        $endereco->user_id = Auth::id();
+        $endereco->rua = $request->input('rua');
+        $endereco->numero = $request->input('numero');
+        $endereco->bairro = $request->input('bairro');
+        $endereco->cidade = $request->input('cidade');
+        $endereco->uf = $request->input('uf');
+        $endereco->cep = $request->input('cep');
+        $endereco->save();
+
+        return redirect()->route('dashboard'); 
     }
 
     /**
@@ -95,8 +111,11 @@ class EnderecoController extends Controller
      * @param  \App\Models\Endereco  $endereco
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Endereco $endereco)
+    public function destroy($id)
     {
-        //
+        $endereco = Endereco::find($id);
+        $endereco->delete();
+
+        return redirect('/dashboard');
     }
 }

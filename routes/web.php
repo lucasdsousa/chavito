@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\EnderecoController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,15 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('/alterar-cadastro/{id}', [RegisteredUserController::class, 'edit'])->name('alterar-cadastro');
+Route::post('/alterar-cadastro/{id}', [RegisteredUserController::class, 'update']);
+
 Route::get('/endereco', [EnderecoController::class, 'create'])->middleware(['auth'])->name('endereco');
+Route::get('/alterar-endereco/{id}', [EnderecoController::class, 'edit'])->name('alterar-endereco');
+Route::get('/apagar-endereco/{id}', [EnderecoController::class, 'destroy'])->name('apagar-endereco');
+Route::post('/alterar-endereco/{id}', [EnderecoController::class, 'update']);
 Route::post('/endereco', [EnderecoController::class, 'store']);
+
 
 Route::get('/', [ImageController::class, 'show']);
 Route::get('/Catalogo', [ImageController::class, 'catalogo']);

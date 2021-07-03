@@ -28,7 +28,7 @@
         <script src="https://sdk.mercadopago.com/js/v2"></script>
 
     </head>
-    <body class="antialiased" style="background-image:url({{asset('images/background03.png')}}); background-size:500px 500px">
+    <body class="antialiased">
     
         @component('components.navbar')@endcomponent
         @yield('content')

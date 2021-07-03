@@ -54,4 +54,25 @@ class RegisteredUserController extends Controller
         return redirect()->route('endereco');
         //return redirect(RouteServiceProvider::HOME);
     }
+
+    public function edit()
+    {
+        return view('alterar_cadastro');
+    }
+
+    public function update(Request $request, $id)
+    {
+        
+        $user = User::find($id);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->tel = $request->input('tel');
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+
+        //event(new Registered($user));
+
+        return redirect(RouteServiceProvider::HOME);
+    }
 }
