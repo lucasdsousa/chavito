@@ -29,10 +29,14 @@
 
     </head>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <body class="antialiased" style="background-image: {{ asset('images/background.jpg') }}">
 =======
     <body class="antialiased" style="background-image:url({{asset('images/background03.png')}}); background-size:500px 500px">
 >>>>>>> 4cfb5abcca6af6b0d1638c2ea9498c701ce56592
+=======
+    <body class="antialiased">
+>>>>>>> master
     
         @component('components.navbar')@endcomponent
         @yield('content')
