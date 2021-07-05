@@ -12,7 +12,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="/Pedido/{{$image->slug}}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('carrinho_add') }}" enctype="multipart/form-data">
             @csrf
 
             <div>
@@ -49,14 +49,15 @@
                                 name="valor"
                                 required autocomplete="current-valor"
                                 readonly
-                                value="{{$image->valor}}" />
+                                value="{{$chav->valor}}" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
+                
+                <input type="text" name="chav_id" readonly hidden value={{ $chav->id }}>
 
                 <x-button class="ml-3" style="background: #ff4d94; font-weight:bold">
-                    <a target="_blank" href={{$preference->init_point}}>
-                        {{ __('Comprar') }}</a>
+                    {{ __('Comprar') }}</a>
                 </x-button>
             </div>
         </form>
@@ -69,24 +70,6 @@
                 </x-button>
             </div>
         </form>
-        <script src="https://sdk.mercadopago.com/js/v2"></script>
-        <script>
-            // Adicione as credenciais do SDK
-              const mp = new MercadoPago('TEST-21a7edf5-cac8-4dec-99ae-7ae6924d03fa', {
-                    locale: 'pt-BR'
-              });
-              // Inicializa o checkout
-                const checkout = mp.checkout({
-                    preference: {
-                        id: '{{$preference->id}}'
-                    },
-                    theme: {
-                        elementsColor: '#ff4d94'
-                    },
-                    //autoOpen: true, // Habilita a abertura automática do Checkout Pro
-                });
-  
-        </script>
         <br><br>
     <p style="text-align: center">*Os pagamentos são realizados pelo MercadoPago.</p>
 

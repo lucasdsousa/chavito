@@ -21,7 +21,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+      //
     }
 
     /**
@@ -34,7 +34,7 @@ class PedidoController extends Controller
 
         $token = 'TEST-8321604311384550-102920-d200b79d81f94c808c742037c07a8521-69839783';
 
-        $chav = DB::table('images')->where('slug', '=', $slug)->get()->first();
+        $chav = DB::table('chavitos')->where('slug', '=', $slug)->get()->first();
 
         require $_SERVER['DOCUMENT_ROOT'].'/../vendor/autoload.php';
         // Adicione as credenciais
@@ -50,9 +50,7 @@ class PedidoController extends Controller
         $preference->items = array($item);
         $preference->save();
 
-        $image = DB::table('images')->where('slug', '=', $slug)->get()->first();
-
-        return view('form_pedido', compact('image', 'slug', 'preference', 'token'));
+        return view('form_pedido', compact('chav', 'slug', 'preference', 'token'));
     }
 
     /**
@@ -75,99 +73,45 @@ class PedidoController extends Controller
             return redirect('/Pedido')->withErrors($validator);
         }
 
+        $produto_id = $request->input('chav_id');
+        $produto = DB::table('chavitos')->where('id', $produto_id)->get()->first();
+
         $pedido = new Pedido();
 
-        $pedido->user = Auth::id();
-        $pedido->image = $request->file('image')->store('imagem_pedido', 'public');
+        $pedido->user_id = Auth::id();
+        $pedido->image = $request->input('image');
         $pedido->modelo = $request->input('modelo');
         $pedido->valor = $request->input('valor');
-
-        /* $payment = $client->request('POST', 'https://api.mercadopago.com/merchant_orders', [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $token
-            ],
-            'json' => [
-                "external_reference" => "default",
-                "preference_id" => "Preference identification",
-                "payer" => [
-                  "id" => 123,
-                  "nickname" => "JOHN"
-                ],
-                "site_id" => "MLA",
-                "items" => [
-                  [
-                    "id" => "item id",
-                    "category_id" => "item category",
-                    "currency_id" => "BRL",
-                    "description" => "item description",
-                    "picture_url" => "item picture",
-                    "quantity" => 1,
-                    "unit_price" => 5,
-                    "title" => "item title"
-                  ]
-                ],
-                "application_id" => 10000000000000000
-              ]
-        ]); */
-
-        /* $payment = $client->request('POST', 'https://api.mercadopago.com/v1/payments', [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $token
-            ],
-            'json' => [
-                "additional_info" => [
-                  "items" => [
-                    [
-                      "id" => "PR0001",
-                      "title" => "Point Mini",
-                      "description" => "Producto Point para cobros con tarjetas mediante bluetooth",
-                      "picture_url" => "https://http2.mlstatic.com/resources/frontend/statics/growth-sellers-landings/device-mlb-point-i_medium@2x.png",
-                      "category_id" => "electronics",
-                      "quantity" => 1,
-                      "unit_price" => 58.8
-                    ]
-                  ],
-                  "payer" => [
-                    "first_name" => "Test",
-                    "last_name" => "Test",
-                    "phone" => [
-                      "area_code" => 11,
-                      "number" => "987654321"
-                    ],
-                    "address" => []
-                  ],
-                  "shipments" => [
-                    "receiver_address" => [
-                      "zip_code" => "12312-123",
-                      "state_name" => "Rio de Janeiro",
-                      "city_name" => "Buzios",
-                      "street_name" => "Av das Nacoes Unidas",
-                      "street_number" => 3003
-                    ]
-                  ],
-                  "barcode" => []
-                ],
-                "description" => "Payment for product",
-                "external_reference" => "MP0001",
-                "installments" => 1,
-                "metadata" => [],
-                "order" => [
-                  "type" => "mercadolibre"
-                ],
-                "payer" => [
-                  "entity_type" => "individual",
-                  "type" => "customer",
-                  "identification" => [],
-                  "phone" => []
-                ],
-                "payment_method_id" => "visa",
-                "transaction_amount" => 58.8
-              ]
-        ]); */
+        $pedido->quantidade = $request->input('quantidade');
+        $pedido->status = "RE";
 
         $pedido->save();
 
-        return redirect()->route('dashboard');
+        //redirect()->route('dashboard');
+
+        require $_SERVER['DOCUMENT_ROOT'].'/../vendor/autoload.php';
+        // Adicione as credenciais
+        MercadoPago\SDK::setAccessToken($token);
+        // Cria um objeto de preferência
+        $preference = new MercadoPago\Preference();
+        
+        // Cria um item na preferência
+        
+        $preference->back_urls = array(
+            "success" => "http://localhost:8000/success",
+            "failure" => "http://localhost:8000/failure",
+            "pending" => "http://localhost:8000/pending"
+        );
+        $preference->auto_return = "approved";
+        
+        $item = new MercadoPago\Item();
+        $item->title = $produto->title;
+        $item->quantity = $request->input('quantidade');
+        $item->unit_price = $produto->valor;
+        $preference->items = array($item);
+        $preference->save();
+
+        return view('pagamento', compact('token', 'client', 'preference'));
     }
 
     /**

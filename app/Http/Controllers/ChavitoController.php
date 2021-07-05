@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Image;
+use App\Models\Chavito;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ImageController extends Controller
+class ChavitoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,9 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+        $chav = DB::table('chavitos')->get();
+
+        return view('index', compact('chav'));
     }
 
     /**
@@ -42,30 +44,23 @@ class ImageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Image  $image
+     * @param  \App\Models\Chavito  $chavito
      * @return \Illuminate\Http\Response
      */
-    public function show(Image $image)
-    {
-        $image = DB::table('images')->get();
-
-        return view('index', compact('image'));
-    }
-
-    public function catalogo(Image $image)
-    {
-        $image = DB::table('images')->get();
-
-        return view('catalogo', compact('image'));
+    public function show(Chavito $chavito)
+    {        
+        $chav = DB::table('chavitos')->get();
+    
+        return view('catalogo', compact('chav'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Image  $image
+     * @param  \App\Models\Chavito  $chavito
      * @return \Illuminate\Http\Response
      */
-    public function edit(Image $image)
+    public function edit(Chavito $chavito)
     {
         //
     }
@@ -74,10 +69,10 @@ class ImageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Image  $image
+     * @param  \App\Models\Chavito  $chavito
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Image $image)
+    public function update(Request $request, Chavito $chavito)
     {
         //
     }
@@ -85,10 +80,10 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Image  $image
+     * @param  \App\Models\Chavito  $chavito
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Image $image)
+    public function destroy(Chavito $chavito)
     {
         //
     }

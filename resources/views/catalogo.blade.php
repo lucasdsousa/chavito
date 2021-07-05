@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Nosso Catálogo</h1>
     <div class="row">
-        @foreach($image as $i)
+        @foreach($chav as $i)
                 <div class="col s12 m7 l4">
                     <div class="card hoverable">
                         <div class="card-image">

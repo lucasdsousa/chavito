@@ -13,7 +13,7 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('chavitos', function (Blueprint $table) {
             $table->id();
             $table->string('image_name');
             $table->string('title');

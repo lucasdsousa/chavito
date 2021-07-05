@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ChavitoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\EnderecoController;
+use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
@@ -37,13 +38,21 @@ Route::post('/alterar-endereco/{id}', [EnderecoController::class, 'update']);
 Route::post('/endereco', [EnderecoController::class, 'store']);
 
 
-Route::get('/', [ImageController::class, 'show']);
-Route::get('/Catalogo', [ImageController::class, 'catalogo']);
-Route::get('/Do-seu-jeito', function(){return view('personalizar');});
+Route::get('/', [ChavitoController::class, 'index']);
+Route::get('/Catalogo', [ChavitoController::class, 'show']);
+
+/* Route::get('/Do-seu-jeito', function(){
+    return view('personalizar');
+}); */
+
+Route::get('/Carrinho', [CarrinhoController::class, 'index'])->name('carrinho');
+Route::post('/Carrinho', [CarrinhoController::class, 'create'])->name('carrinho_add');
 
 Route::get('/Pedido/{slug}', [PedidoController::class, 'create'])->middleware(['auth'])->name('pedido_new');
-Route::post('/Pedido/{slug}', [PedidoController::class, 'store'])->name('pedido');
+//Route::post('/Pedido/{slug}', [PedidoController::class, 'store'])->name('pedido');
+Route::post('/Comprar', [PedidoController::class, 'store'])->name('comprar');
+
 
 Route::get('/Pagamento', function(){
-    return view('pagamento')->name('pagamento');
+    return view('pagamento');
 });
