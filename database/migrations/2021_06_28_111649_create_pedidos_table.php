@@ -19,6 +19,8 @@ class CreatePedidosTable extends Migration
             $table->string('image');
             $table->string('modelo');
             $table->float('valor');
+            $table->integer('quantidade');
+            $table->string('status');
             $table->timestamps();
         });
     }

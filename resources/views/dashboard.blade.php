@@ -6,7 +6,7 @@
 
 <br><br>
 
-<ul class="collapsible popout">
+<ul class="collapsible popout container" style="margin:0 auto; margin-bottom:100px">
     <li>
       <div class="collapsible-header"><h5>Dados Cadastrais</h5></div>
         <div class="collapsible-body">
@@ -43,7 +43,29 @@
     </li>
     <li>
       <div class="collapsible-header"><h5>Pedidos</h5></div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      <div class="collapsible-body">
+        @php
+          $pedidos = DB::table('pedidos')->get();
+        @endphp
+
+        @if (sizeof($pedidos) == 0)
+          <p>Você ainda não fez nenhum pedido.</p>
+        @else
+
+          @foreach ($pedidos as $p)
+
+            <p style="font-weight:bold">Pedido Número {{ $p->id }}</p>
+            <p style="font-weight:bold">Modelo do Chavito: {{ $p->modelo }}</p>
+            <p style="font-weight:bold">Valor do pedido: {{ $p->valor }}</p>
+            <p style="font-weight:bold">Imagem enviada: <img src="{{ asset('$p->image') }}" alt=""></p>
+            <p style="font-weight:bold">Status do Pedido: {{ $p->status }}</p>
+            <a class="btn" href="#" style="background: #ff4d94; font-weight: bold;">Cancelar Pedido</a>
+            <br><br><br>
+            
+          @endforeach
+          
+        @endif
+      </div>
     </li>
 </ul>
 
