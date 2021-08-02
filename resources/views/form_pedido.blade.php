@@ -12,7 +12,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('carrinho_add') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('comprar') }}" enctype="multipart/form-data">
             @csrf
 
             <div>
@@ -50,6 +50,17 @@
                                 required autocomplete="current-valor"
                                 readonly
                                 value="{{$chav->valor}}" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="quantidade" :value="__('Quantidade')" />
+
+                <x-input id="quantidade" class="block mt-1 w-full"
+                                type="quantidade"
+                                name="quantidade"
+                                required autocomplete="current-quantidade"
+                                readonly
+                                value="1" />
             </div>
 
             <div class="flex items-center justify-end mt-4">

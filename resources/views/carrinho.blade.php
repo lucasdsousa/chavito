@@ -15,22 +15,26 @@
             </thead>
 
             <tbody>
+                @forelse($items as $i)
 
                     <tr>
-                        <td>{{ $produto->title }}</td>
-                        <td>
-                            <p id="qty" name="qty">1</p>
-                            <a href="#" onclick="addtocart()"><i class="bi bi-plus-circle"></i></a>
-                            <a href="#" onclick="removefromcart()"><i class="bi bi-dash-circle"></i></a>
-                        </td>
-                        <td id="price">R$ {{ $produto->valor }},00</td>
+                            <td>{{ $i->modelo }}</td>
+                            <td>
+                                <p id="qty" name="qty">1</p>
+                                <a href="#" onclick="addtocart()"><i class="bi bi-plus-circle"></i></a>
+                                <a href="#" onclick="removefromcart()"><i class="bi bi-dash-circle"></i></a>
+                            </td>
+                            <td id="price">R$ {{ $i->valor }},00</td>
 
-                        <input  type="text" name="image" value="{{ $pedido_img }}">
-                        <input  type="text" name="chav_id" value="{{ $produto->id }}">
-                        <input  type="text" name="modelo" value="{{ $produto->title }}">
-                        <input  type="text" name="quantidade" id="qtd">
-                        <input  type="text" name="valor" id="value">
+                            <input  type="text" name="image" value="{{ $i->image }}">
+                            <input  type="text" name="chav_id" value="{{ $i->id }}">
+                            <input  type="text" name="modelo" value="{{ $i->modelo }}">
+                            <input  type="text" name="quantidade" id="qtd">
+                            <input  type="text" name="valor" id="value">
                     </tr>
+                @empty
+                    <p>Você ainda não adicionou produtos ao seu carrinho.</p>
+                @endforelse
             
             </tbody>
         </table>

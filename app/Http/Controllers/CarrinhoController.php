@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Carrinho;
 use App\Models\Chavito;
+use App\Models\Pedido;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use MercadoPago;
+use Illuminate\Support\Facades\Auth;
 
 
 class CarrinhoController extends Controller
@@ -54,7 +56,10 @@ class CarrinhoController extends Controller
      */
     public function show(Carrinho $carrinho)
     {
-        //
+        $user_id = Auth::id();
+        $items = DB::table('pedidos')->where('user_id', $user_id)->where('status', 'RE')->get();
+
+        return view('carrinho', compact('user_id', 'items'));
     }
 
     /**

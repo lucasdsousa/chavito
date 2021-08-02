@@ -79,17 +79,17 @@ class PedidoController extends Controller
         $pedido = new Pedido();
 
         $pedido->user_id = Auth::id();
-        $pedido->image = $request->input('image');
+        $pedido->image = $request->file('image');
         $pedido->modelo = $request->input('modelo');
         $pedido->valor = $request->input('valor');
-        $pedido->quantidade = $request->input('quantidade');
+        $pedido->quantidade = 1; //$request->input('quantidade');
         $pedido->status = "RE";
 
         $pedido->save();
 
-        //redirect()->route('dashboard');
+        redirect()->route('carrinho_add');
 
-        require $_SERVER['DOCUMENT_ROOT'].'/../vendor/autoload.php';
+        /* require $_SERVER['DOCUMENT_ROOT'].'/../vendor/autoload.php';
         // Adicione as credenciais
         MercadoPago\SDK::setAccessToken($token);
         // Cria um objeto de preferência
@@ -111,7 +111,7 @@ class PedidoController extends Controller
         $preference->items = array($item);
         $preference->save();
 
-        return view('pagamento', compact('token', 'client', 'preference'));
+        return view('carrinho', compact('token', 'client', 'preference')); */
     }
 
     /**
