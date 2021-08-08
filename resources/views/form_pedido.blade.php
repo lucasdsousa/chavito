@@ -12,7 +12,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('comprar') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('carrinho_add') }}" enctype="multipart/form-data">
             @csrf
 
             <div>

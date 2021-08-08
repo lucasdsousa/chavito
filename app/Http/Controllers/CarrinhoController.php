@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use MercadoPago;
 use Illuminate\Support\Facades\Auth;
+use GuzzleHttp;
+use GuzzleHttp\Client;
 
 
 class CarrinhoController extends Controller
@@ -45,7 +47,41 @@ class CarrinhoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $token = 'TEST-8321604311384550-102920-d200b79d81f94c808c742037c07a8521-69839783';
+        $client = new GuzzleHttp\Client();
+
+        $pedido = new Pedido();
+
+        DB::table('pedidos')->where('user_id', Auth::id())->update(['status' => 'P
+        A']);
+        
+        $items = DB::table('pedidos')->where('user_id', Auth::id())->where('status', 'RE')->get();
+
+        require $_SERVER['DOCUMENT_ROOT'].'/../vendor/autoload.php';
+        // Adicione as credenciais
+        MercadoPago\SDK::setAccessToken($token);
+        // Cria um objeto de preferência
+        $preference = new MercadoPago\Preference();
+        
+        // Cria um item na preferência
+        
+        $preference->back_urls = array(
+            "success" => "http://localhost:8000/success",
+            "failure" => "http://localhost:8000/failure",
+            "pending" => "http://localhost:8000/pending"
+        );
+        $preference->auto_return = "approved";
+        
+        $item = new MercadoPago\Item();
+        $item->title = "Chavito"; //$produto->title;
+        $item->quantity = $items->sum('quantidade'); //$request->input('quantidade');
+        $item->unit_price = $items->sum('valor'); //$produto->valor;
+        $preference->items = array($item);
+        $preference->save();
+
+        print_r($item->title);
+
+        return redirect()->route('dashboard');
     }
 
     /**

@@ -46,11 +46,12 @@ Route::get('/Catalogo', [ChavitoController::class, 'show']);
 }); */
 
 //Route::get('/Carrinho', [CarrinhoController::class, 'index'])->middleware(['auth'])->name('carrinho');
-Route::get('/Carrinho', [CarrinhoController::class, 'show'])->middleware(['auth'])->name('carrinho_add');
+Route::get('/Carrinho', [CarrinhoController::class, 'show'])->middleware(['auth'])->name('carrinho');
+Route::post('/Comprar', [CarrinhoController::class, 'store'])->middleware(['auth'])->name('comprar');
 
 Route::get('/Pedido/{slug}', [PedidoController::class, 'create'])->middleware(['auth'])->name('pedido_new');
+Route::post('/add-carrinho', [PedidoController::class, 'store'])->middleware(['auth'])->name('carrinho_add');
 //Route::post('/Pedido/{slug}', [PedidoController::class, 'store'])->name('pedido');
-Route::post('/Comprar', [PedidoController::class, 'store'])->middleware(['auth'])->name('comprar');
 
 
 Route::get('/Pagamento', function(){

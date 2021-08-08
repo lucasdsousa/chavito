@@ -18,6 +18,7 @@ class CreatePedidosTable extends Migration
             $table->foreignId('user_id');
             $table->string('image');
             $table->string('modelo');
+            $table->string('pingente');
             $table->float('valor');
             $table->integer('quantidade');
             $table->string('status');
