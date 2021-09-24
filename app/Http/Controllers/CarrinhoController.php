@@ -47,19 +47,21 @@ class CarrinhoController extends Controller
      */
     public function store(Request $request)
     {
-        $token = 'TEST-8321604311384550-102920-d200b79d81f94c808c742037c07a8521-69839783';
+        $token = 'APP_USR-8734955682398657-091822-65c28dbb1394c5743927bf9a4ab19a53-69839783';
         $client = new GuzzleHttp\Client();
 
         $pedido = new Pedido();
 
-        DB::table('pedidos')->where('user_id', Auth::id())->update(['status' => 'P
-        A']);
+        //DB::table('pedidos')->where('user_id', Auth::id())->update(['status' => 'PA']);
         
-        $items = DB::table('pedidos')->where('user_id', Auth::id())->where('status', 'RE')->get();
+        $items = DB::table('pedidos')->where('user_id', Auth::id())->where('status', 'RE');
+        //$items->update(['status' => 'PEND']);
 
         require $_SERVER['DOCUMENT_ROOT'].'/../vendor/autoload.php';
+
         // Adicione as credenciais
         MercadoPago\SDK::setAccessToken($token);
+
         // Cria um objeto de preferência
         $preference = new MercadoPago\Preference();
         
@@ -74,14 +76,14 @@ class CarrinhoController extends Controller
         
         $item = new MercadoPago\Item();
         $item->title = "Chavito"; //$produto->title;
-        $item->quantity = $items->sum('quantidade'); //$request->input('quantidade');
-        $item->unit_price = $items->sum('valor'); //$produto->valor;
+        $item->quantity = $items->get()->sum('quantidade'); //$request->input('quantidade');
+        $item->unit_price = $items->get()->sum('valor'); //$produto->valor;
         $preference->items = array($item);
         $preference->save();
 
         print_r($item->title);
 
-        return redirect()->route('dashboard');
+        //return redirect()->route('dashboard');
     }
 
     /**
@@ -92,10 +94,38 @@ class CarrinhoController extends Controller
      */
     public function show(Carrinho $carrinho)
     {
+        $token = 'APP_USR-8734955682398657-091822-65c28dbb1394c5743927bf9a4ab19a53-69839783';
+        $public_key = 'APP_USR-ec7ed96d-c98c-49af-978a-81232df78f9d';
+
         $user_id = Auth::id();
+        
         $items = DB::table('pedidos')->where('user_id', $user_id)->where('status', 'RE')->get();
 
-        return view('carrinho', compact('user_id', 'items'));
+        require $_SERVER['DOCUMENT_ROOT'].'/../vendor/autoload.php';
+
+        // Adicione as credenciais
+        MercadoPago\SDK::setAccessToken($token);
+
+        // Cria um objeto de preferência
+        $preference = new MercadoPago\Preference();
+        
+        // Cria um item na preferência        
+        $item = new MercadoPago\Item();
+        $item->title = "Chavito"; //$produto->title;
+        $item->quantity = sizeof($items) == 0 ? 1 : $items->sum('quantidade'); //$request->input('quantidade');
+        $item->unit_price = sizeof($items) == 0 ? 0.01 : $items->sum('valor'); //$produto->valor;
+        $preference->items = array($item);
+        $preference->save();
+        
+        $preference->back_urls = array(
+            "success" => "http://localhost:8000/success",
+            "failure" => "http://localhost:8000/failure",
+            "pending" => "http://localhost:8000/pending"
+        );
+
+        $preference->auto_return = "approved";
+
+        return view('carrinho', compact('user_id', 'items', 'preference', 'public_key'));
     }
 
     /**

@@ -32,13 +32,15 @@ class PedidoController extends Controller
     public function create(String $slug)
     {
 
-        $token = 'TEST-8321604311384550-102920-d200b79d81f94c808c742037c07a8521-69839783';
+        $token = 'APP_USR-8734955682398657-091822-65c28dbb1394c5743927bf9a4ab19a53-69839783';
 
         $chav = DB::table('chavitos')->where('slug', '=', $slug)->get()->first();
 
         require $_SERVER['DOCUMENT_ROOT'].'/../vendor/autoload.php';
+
         // Adicione as credenciais
         MercadoPago\SDK::setAccessToken($token);
+
         // Cria um objeto de preferência
         $preference = new MercadoPago\Preference();
         
@@ -62,7 +64,7 @@ class PedidoController extends Controller
     public function store(Request $request)
     {
 
-        $token = 'TEST-8321604311384550-102920-d200b79d81f94c808c742037c07a8521-69839783';
+        $token = 'APP_USR-8734955682398657-091822-65c28dbb1394c5743927bf9a4ab19a53-69839783';
         $client = new GuzzleHttp\Client();
 
         $validator = Validator::make($request->all(), [

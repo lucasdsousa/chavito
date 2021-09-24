@@ -53,6 +53,18 @@ Route::get('/Pedido/{slug}', [PedidoController::class, 'create'])->middleware(['
 Route::post('/add-carrinho', [PedidoController::class, 'store'])->middleware(['auth'])->name('carrinho_add');
 //Route::post('/Pedido/{slug}', [PedidoController::class, 'store'])->name('pedido');
 
+Route::get('/success', function(){
+    return view('success');
+});
+
+Route::get('/failure', function(){
+    return view('failure');
+});
+
+Route::get('/pending', function(){
+    return view('pending');
+});
+
 
 Route::get('/Pagamento', function(){
     return view('pagamento');

@@ -3,8 +3,6 @@
 @section('content')
 
 <div class="container" style="margin-bottom:100px">
-    <form method="POST" action="{{ route('comprar') }}" enctype="multipart/form-data">
-    @csrf
 
     @forelse($items as $i)
 
@@ -35,16 +33,39 @@
                     </tr>
             
             </tbody>
-        </table>
+        </table>        
 
-            <button class="submit btn right" style="background: #ff4d94; font-weight: bold;">
-                Finalizar Compra</a>
-            </button>
+        <div class="cho-container right"></div>
+
+        <script>
+            // Adicione as credenciais do SDK
+            const mp = new MercadoPago('{{$public_key}}', {
+                    locale: 'pt-BR'
+            });
+        
+            // Inicialize o checkout
+            mp.checkout({
+                preference: {
+                    id: '{{$preference->id}}'
+                },
+                render: {
+                        container: '.cho-container', // Indica onde o botão de pagamento será exibido
+                        label: 'Comprar', // Muda o texto do botão de pagamento (opcional)
+                }
+            });
+
+            // Invocando a função posteriormente
+            checkout.render({
+                container: '.cho-container',
+                label: 'Pagar'
+            })
+        </script>
 
         @empty
             <p>Você ainda não adicionou produtos ao seu carrinho.</p>
-        @endforelse
-    </form>
+            
+    @endforelse
+
 </div>
 
 @endsection
