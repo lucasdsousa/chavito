@@ -81,7 +81,7 @@ class PedidoController extends Controller
         $pedido = new Pedido();
 
         $pedido->user_id = Auth::id();
-        $pedido->image = $request->file('image');
+        $pedido->image = $request->file('image')->store('images/Pedidos', 'public');
         $pedido->modelo = $request->input('modelo');
         $pedido->pingente = "NAO"; //$request->input('pingente');
         $pedido->valor = $request->input('valor');

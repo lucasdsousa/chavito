@@ -157,8 +157,10 @@ class CarrinhoController extends Controller
      * @param  \App\Models\Carrinho  $carrinho
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Carrinho $carrinho)
+    public function destroy(Carrinho $carrinho, $id)
     {
-        //
+        $item = DB::table('pedidos')->where('id', $id)->delete();
+
+        return redirect()->route('carrinho');
     }
 }

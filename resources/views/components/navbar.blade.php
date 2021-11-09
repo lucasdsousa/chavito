@@ -22,6 +22,7 @@
                             @endif
                         @endauth
                 @endif
+                <li><a class="grey-text text-darken-3" href="{{ route('carrinho') }}"><i class="material-icons">shopping_cart</i></a></li>
             </ul>
         </div>
     </nav>

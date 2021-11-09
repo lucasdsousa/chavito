@@ -18,7 +18,8 @@
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-        
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         <style>
             body {
                 font-family: 'Questrial', sans-serif;
@@ -30,10 +31,24 @@
     </head>
 
     <body class="antialiased">
-    
-        @component('components.navbar')@endcomponent
-        @yield('content')
-        @component('components.footer')@endcomponent
+        <style>
+            #page-container {
+            position: relative;
+            min-height: 100vh;
+            }
+
+            #content-wrap {
+                padding-bottom: 2.5rem;    /* Footer height */
+            }
+        </style>
+
+        <div id="page-container">
+            <div id="content-wrap">    
+                @component('components.navbar')@endcomponent
+                @yield('content')
+                @component('components.footer')@endcomponent
+            </div>
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
