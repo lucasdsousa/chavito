@@ -16,7 +16,7 @@
               </div>
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text center">Siga o nosso Instagram
-                    <a class="btn-floating btn-medium waves-effect waves-light red mr-3" href="https://www.instagram.com/chavito.br">
+                    <a class="btn-floating btn-medium waves-effect waves-light red mr-3" href="https://www.instagram.com/chavito.br" target="_blank">
                         <i class="bi bi-instagram"></i>
                     </a>
                   </h5>

@@ -100,6 +100,12 @@ class CarrinhoController extends Controller
         $user_id = Auth::id();
         
         $items = DB::table('pedidos')->where('user_id', $user_id)->where('status', 'RE')->get();
+        $items_sum = $items->sum('valor');
+        
+        $endereco = DB::table('enderecos')->where('user_id', $user_id)->first();
+        $frete = DB::table('fretes')->where('uf', $endereco->uf)->first();
+
+        $total = $frete->valor + $items_sum;
 
         require $_SERVER['DOCUMENT_ROOT'].'/../vendor/autoload.php';
 
@@ -113,7 +119,7 @@ class CarrinhoController extends Controller
         $item = new MercadoPago\Item();
         $item->title = "Chavito"; //$produto->title;
         $item->quantity = sizeof($items) == 0 ? 1 : $items->sum('quantidade'); //$request->input('quantidade');
-        $item->unit_price = sizeof($items) == 0 ? 0.01 : $items->sum('valor'); //$produto->valor;
+        $item->unit_price = sizeof($items) == 0 ? 0.01 : $total; //$produto->valor;
         $preference->items = array($item);
         $preference->save();
         
@@ -125,7 +131,7 @@ class CarrinhoController extends Controller
 
         $preference->auto_return = "approved";
 
-        return view('carrinho', compact('user_id', 'items', 'preference', 'public_key'));
+        return view('carrinho', compact('user_id', 'items', 'items_sum', 'preference', 'public_key', 'frete', 'total'));
     }
 
     /**

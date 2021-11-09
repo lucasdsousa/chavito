@@ -45,6 +45,7 @@
 
                         <script>
                             document.getElementById("tableCarrinho").style.display = "none";
+                            document.getElementById("cardBottom").style.display = "none";
                         </script>
                         
                     @endforelse
@@ -55,22 +56,22 @@
     </div>
     
     <div class="card-content grey lighten-4">
-        <div class="cho-container center">
-            <p>Subtotal: R$ 1,00</p>
-            <p>Frete: R$ 1,00</p>
-            <h5>Total: R$ 1,00</h5>
+        <div class="cho-container center" id="cardBottom">
+            <p>Subtotal: R$ {{ $items_sum }},00</p>
+            <p>Frete: R$ {{ $frete->valor }},00 para {{ $frete->uf }}</p>
+            <h5>Total: R$ {{ $total }},00</h5>
         </div>
 
         <script>
             // Adicione as credenciais do SDK
-            const mp = new MercadoPago('{{$public_key}}', {
+            const mp = new MercadoPago('{{ $public_key }}', {
                     locale: 'pt-BR'
             });
 
             // Inicialize o checkout
             mp.checkout({
                 preference: {
-                    id: '{{$preference->id}}'
+                    id: '{{ $preference->id }}'
                 },
                 render: {
                         container: '.cho-container', // Indica onde o botão de pagamento será exibido
