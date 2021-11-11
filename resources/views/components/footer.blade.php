@@ -13,6 +13,7 @@
               <div class="col l6 s12">
                 <h5 class="white-text">Enviamos para todo o Brasil!</h5>
                 <p class="grey-text text-lighten-4">Consulte os valores de frete na página de pagamento.</p>
+                <p class="grey-text text-lighten-4"><b>Mora em Feira de Santana-BA? O valor do frete é fixo: R$ 15,00.</b></p>
               </div>
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text center">Siga o nosso Instagram

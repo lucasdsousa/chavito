@@ -21,16 +21,7 @@
                 <input id="image" class="block mt-1 w-full" type="file" name="image" required autofocus />
             </div>
 
-            <div class="mt-4">
-                <x-label for="observacoes" :value="__('Observações')" />
-
-                <x-input id="observacoes" class="block mt-1 w-full"
-                                type="observacoes"
-                                name="observacoes"
-                                autocomplete="current-observacoes" />
-            </div>
-
-            <div class="mt-4">
+            <div class="mt-4" hidden>
                 <x-label for="modelo" :value="__('Modelo')" />
 
                 <x-input id="modelo" class="block mt-1 w-full"
@@ -41,7 +32,7 @@
                                 value="{{$slug}}" />
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4" hidden>
                 <x-label for="valor" :value="__('Valor')" />
 
                 <x-input id="valor" class="block mt-1 w-full"
@@ -52,7 +43,7 @@
                                 value="{{$chav->valor}}" />
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4" hidden>
                 <x-label for="quantidade" :value="__('Quantidade')" />
 
                 <x-input id="quantidade" class="block mt-1 w-full"

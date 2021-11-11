@@ -20,6 +20,29 @@
 </div>
 
 <br><br><br>
+
+<div class="container center">
+  <h3>Bem Vindo(a)!</h3>
+  <h5>Apresentamos o nosso site. Totalmente interativo, moderno e de fácil navegação. Tem como objetivo mostrar a diversidade dos produtos e serviços oferecidos, nele, você também poderá solicitar orçamentos on-line. Sem dúvida é um canal que nos aproxima dos nossos atuais e futuros clientes. Aproveite</h5>
+</div>
+
+<br><br>
+<hr>
+
+<div class="container center">
+  <h3>Quem é a Chavito?</h3>
+  <h5>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h5>
+</div>
+
+<br><br><br>
+
+<div class="container center">
+  <h3>Economize no frete indo ao nosso ponto de entrega!*</h3>
+  <p>*15 dias úteis após aprovação do pedido.</p>
+  <iframe class="center" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1094.0713414341308!2d-38.944774746202214!3d-12.259991422199821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71437766abe0b0f%3A0xbcc2e36c509a224c!2sR.%20S%C3%A3o%20Domingos%2C%20505%20-%20Capuchinhos%2C%20Feira%20de%20Santana%20-%20BA%2C%2044076-200!5e0!3m2!1spt-BR!2sbr!4v1636651821559!5m2!1spt-BR!2sbr" width="1000" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+
+<br><br><br>
       
 <script>
   document.addEventListener('DOMContentLoaded', function() {
