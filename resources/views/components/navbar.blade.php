@@ -13,7 +13,27 @@
         
                 @if (Route::has('login'))
                         @auth
-                            <li><a class="grey-text text-darken-3" href="{{ url('/dashboard') }}" style="font-weight:bold">Área do Cliente</a></li>
+                            <!-- Dropdown Structure -->
+                            <ul id='dropdown1' class='dropdown-content'>
+                                <li><a href="/dashboard">Área do Cliente</a></li>
+                                <li><a href="{{ route('logout') }}">Sair</a></li>
+                            </ul>
+
+                            <li><a class="grey-text text-darken-3 dropdown-trigger" href="#" data-target='dropdown1' style="font-weight:bold">Olá, {{ Auth::user()->name }}</a></li>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var elems = document.querySelectorAll('.dropdown-trigger');
+                                    var options = {
+                                        'coverTrigger':false,
+                                    }
+                                    var instances = M.Dropdown.init(elems, options);
+                                });
+
+                                // Or with jQuery
+
+                                $('.dropdown-trigger').dropdown();
+                            </script>
                         @else
                             <li><a class="grey-text text-darken-3" href="{{ route('login') }}" style="font-weight:bold">Login</a></li>
 

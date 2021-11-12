@@ -6,6 +6,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
 require __DIR__.'/auth.php';
 
 Route::get('/alterar-cadastro/{id}', [RegisteredUserController::class, 'edit'])->name('alterar-cadastro');
@@ -38,7 +41,7 @@ Route::post('/alterar-endereco/{id}', [EnderecoController::class, 'update']);
 Route::post('/endereco', [EnderecoController::class, 'store']);
 
 
-Route::get('/', [ChavitoController::class, 'index']);
+Route::get('/', [ChavitoController::class, 'index'])->name('home');
 Route::get('/Catalogo', [ChavitoController::class, 'show']);
 
 /* Route::get('/Do-seu-jeito', function(){

@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(ChavitoSeeder::class);
         $this->call(FreteSeeder::class);
+        $this->call(AdminSeeder::class);
     }
 }
