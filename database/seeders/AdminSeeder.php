@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminSeeder extends Seeder
 {
@@ -14,10 +15,11 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('admins')->insert([
-            'nome' => 'Gabi',
+        DB::table('users')->insert([
+            'name' => 'Gabi',
             'email' => 'admin.gabi@admin.com',
-            'password' => '999999999',
+            'user_type' => 'ADMIN',
+            'password' => Hash::make('999999999'),
         ]);
     }
 }

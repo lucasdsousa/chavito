@@ -5,6 +5,7 @@ use App\Http\Controllers\ChavitoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\CarrinhoController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -73,3 +74,5 @@ Route::get('/pending', function(){
 Route::get('/Pagamento', function(){
     return view('pagamento');
 })->middleware(['auth']);
+
+Route::get('admin', [AdminController::class, 'index'])->middleware(['auth']);
