@@ -54,25 +54,6 @@ class AdminController extends Controller
         return redirect()->route('admin.administradores');
     }
 
-    public function createChavito()
-    {
-        return view('admin.new-chavito');
-    }
-
-    public function storeChavito(Request $request)
-    {
-        $chav = new Chavito();
-
-        $chav->title = $request->input('modelo');
-        $chav->descricao = $request->input('descricao');
-        $chav->valor = $request->input('valor');
-        $chav->slug = $request->input('slug');
-        $chav->image_name = $request->file('image')->store('images/Chavitos', 'public');
-        $chav->save();
-
-        return redirect()->route('admin.chavitos');
-    }
-
     /**
      * Display the specified resource.
      *
@@ -84,13 +65,6 @@ class AdminController extends Controller
         $admins = User::get();
 
         return view('admin.admins', compact('admins'));
-    }
-
-    public function showChavitos()
-    {
-        $chavitos = DB::table('chavitos')->get();
-
-        return view('admin.chavitos', compact('chavitos'));
     }
 
     /**
@@ -127,27 +101,6 @@ class AdminController extends Controller
         return redirect()->route('admin.administradores');
     }
 
-    public function editChavito(Chavito $chavito, $id)
-    {
-        $chavito = Chavito::find($id);
-
-        return view('admin.edit-chavito', compact('chavito'));
-    }
-
-    public function updateChavito(Request $request, Chavito $chavito, $id)
-    {
-        $chav = Chavito::find($id);
-
-        $chav->title = $request->input('modelo');
-        $chav->descricao = $request->input('descricao');
-        $chav->valor = $request->input('valor');
-        $chav->slug = $request->input('slug');
-        $chav->image_name = $request->file('image')->store('images/Chavitos', 'public');
-        $chav->save();
-
-        return redirect()->route('admin.chavitos');
-    }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -159,17 +112,5 @@ class AdminController extends Controller
         User::find($id)->delete();
 
         return redirect()->route('admin.administradores');
-    }
-
-    public function destroyChavito(Chavito $chavito, $id)
-    {
-        Chavito::find($id)->delete();
-
-        return redirect()->route('admin.chavitos');
-    }
-
-    public function showPedidos()
-    {
-        return view('admin.pedidos');
     }
 }

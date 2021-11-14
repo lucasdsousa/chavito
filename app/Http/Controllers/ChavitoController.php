@@ -27,7 +27,7 @@ class ChavitoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.new-chavito');
     }
 
     /**
@@ -38,7 +38,16 @@ class ChavitoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $chav = new Chavito();
+
+        $chav->title = $request->input('modelo');
+        $chav->descricao = $request->input('descricao');
+        $chav->valor = $request->input('valor');
+        $chav->slug = $request->input('slug');
+        $chav->image_name = $request->file('image')->store('images/Chavitos', 'public');
+        $chav->save();
+
+        return redirect()->route('admin.chavitos');
     }
 
     /**
@@ -48,10 +57,17 @@ class ChavitoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Chavito $chavito)
-    {        
+    {
         $chav = DB::table('chavitos')->get();
-    
+
         return view('catalogo', compact('chav'));
+    }
+
+    public function showChavitosAdmin()
+    {
+        $chavitos = DB::table('chavitos')->get();
+
+        return view('admin.chavitos', compact('chavitos'));
     }
 
     /**
@@ -60,9 +76,11 @@ class ChavitoController extends Controller
      * @param  \App\Models\Chavito  $chavito
      * @return \Illuminate\Http\Response
      */
-    public function edit(Chavito $chavito)
+    public function edit(Chavito $chavito, $id)
     {
-        //
+        $chavito = Chavito::find($id);
+
+        return view('admin.edit-chavito', compact('chavito'));
     }
 
     /**
@@ -72,9 +90,18 @@ class ChavitoController extends Controller
      * @param  \App\Models\Chavito  $chavito
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Chavito $chavito)
+    public function update(Request $request, Chavito $chavito, $id)
     {
-        //
+        $chav = Chavito::find($id);
+
+        $chav->title = $request->input('modelo');
+        $chav->descricao = $request->input('descricao');
+        $chav->valor = $request->input('valor');
+        $chav->slug = $request->input('slug');
+        $chav->image_name = $request->file('image')->store('images/Chavitos', 'public');
+        $chav->save();
+
+        return redirect()->route('admin.chavitos');
     }
 
     /**
@@ -83,8 +110,10 @@ class ChavitoController extends Controller
      * @param  \App\Models\Chavito  $chavito
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Chavito $chavito)
+    public function destroy(Chavito $chavito, $id)
     {
-        //
+        Chavito::find($id)->delete();
+
+        return redirect()->route('admin.chavitos');
     }
 }

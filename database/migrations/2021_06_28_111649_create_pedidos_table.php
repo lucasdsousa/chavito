@@ -22,6 +22,7 @@ class CreatePedidosTable extends Migration
             $table->float('valor');
             $table->integer('quantidade');
             $table->string('status');
+            $table->string('enviado');
             $table->timestamps();
         });
     }

@@ -77,7 +77,7 @@ Route::get('/Pagamento', function () {
 
 Route::get('admin', [AdminController::class, 'index'])->middleware(['auth'])->name('admin');
 
-Route::get('admin/chavitos', [AdminController::class, 'showChavitos'])->middleware(['auth'])->name('admin.chavitos');
+Route::get('admin/chavitos', [AdminController::class, 'showChavitosAdmin'])->middleware(['auth'])->name('admin.chavitos');
 Route::get('admin/chavitos/novo', [AdminController::class, 'createChavito'])->middleware(['auth']);
 Route::post('admin/chavitos/novo', [AdminController::class, 'storeChavito'])->middleware(['auth'])->name('chavitos-novo');
 Route::get('admin/chavitos/editar-{id}', [AdminController::class, 'editChavito'])->middleware(['auth']);
@@ -91,4 +91,12 @@ Route::get('admin/administradores/editar-{id}', [AdminController::class, 'edit']
 Route::post('admin/administradores/editar-{id}', [AdminController::class, 'update'])->middleware(['auth'])->name('admin-editar');
 Route::post('admin/administradores/apagar-{id}', [AdminController::class, 'destroy'])->middleware(['auth'])->name('admin-apagar');
 
-Route::get('admin/pedidos', [AdminController::class, 'showPedidos'])->middleware(['auth'])->name('admin.pedidos');
+Route::get('admin/pedidos', [PedidoController::class, 'show'])->middleware(['auth'])->name('admin.pedidos');
+Route::get('admin/pedidos/aprovados', [PedidoController::class, 'aprovados'])->middleware(['auth'])->name('pedidos-aprovados');
+Route::get('admin/pedidos/aprovacao', [PedidoController::class, 'aprovacao'])->middleware(['auth'])->name('pedidos-aprovacao');
+Route::post('admin/pedidos/aprovar-{id}', [PedidoController::class, 'aprovar'])->middleware(['auth'])->name('pedidos-aprovar');
+Route::get('admin/pedidos/enviados', [PedidoController::class, 'enviados'])->middleware(['auth'])->name('pedidos-enviado');
+Route::get('admin/pedidos/envio', [PedidoController::class, 'envio'])->middleware(['auth'])->name('pedidos-envio');
+Route::post('admin/pedidos/enviar-{id}', [PedidoController::class, 'enviar'])->middleware(['auth'])->name('pedidos-enviar');
+Route::post('admin/pedidos/cancelar-{id}', [PedidoController::class, 'cancelar'])->middleware(['auth'])->name('pedidos-cancelar');
+Route::get('admin/pedidos/cancelados', [PedidoController::class, 'cancelados'])->middleware(['auth'])->name('pedidos-cancelados');

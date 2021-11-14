@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
-use App\Models\Image;
+use App\Models\Chavito;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +22,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-      //
+        //
     }
 
     /**
@@ -36,14 +37,14 @@ class PedidoController extends Controller
 
         $chav = DB::table('chavitos')->where('slug', '=', $slug)->get()->first();
 
-        require $_SERVER['DOCUMENT_ROOT'].'/../vendor/autoload.php';
+        require $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
 
         // Adicione as credenciais
         MercadoPago\SDK::setAccessToken($token);
 
         // Cria um objeto de preferência
         $preference = new MercadoPago\Preference();
-        
+
         // Cria um item na preferência
         $item = new MercadoPago\Item();
         $item->title = $chav->title;
@@ -71,7 +72,7 @@ class PedidoController extends Controller
             'image' => 'required'
         ]);
 
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return redirect('/Pedido')->withErrors($validator);
         }
 
@@ -87,6 +88,7 @@ class PedidoController extends Controller
         $pedido->valor = $request->input('valor');
         $pedido->quantidade = 1; //$request->input('quantidade');
         $pedido->status = "RE";
+        $pedido->enviado = "N";
 
         $pedido->save();
 
@@ -101,7 +103,50 @@ class PedidoController extends Controller
      */
     public function show(Pedido $pedido)
     {
-        //
+        $pedidos = Pedido::get();
+        $user = User::where('id', $pedido->user_id);
+
+        return view('admin.pedidos', compact('pedidos', 'user'));
+    }
+
+    public function aprovados(Pedido $pedido)
+    {
+        $pedidos = DB::table('pedidos')->where('status', 'AP')->get();
+        $user = User::where('id', $pedido->user_id);
+
+        return view('admin.pedidos-aprovados', compact('pedidos', 'user'));
+    }
+
+    public function aprovacao(Pedido $pedido)
+    {
+        $pedidos = DB::table('pedidos')->where('status', 'RE')->get();
+        $user = User::where('id', $pedido->user_id);
+
+        return view('admin.pedidos-aprovacao', compact('pedidos', 'user'));
+    }
+
+    public function envio(Pedido $pedido)
+    {
+        $pedidos = DB::table('pedidos')->where('enviado', 'N')->get();
+        $user = User::where('id', $pedido->user_id);
+
+        return view('admin.pedidos-envio', compact('pedidos', 'user'));
+    }
+
+    public function enviados(Pedido $pedido)
+    {
+        $pedidos = DB::table('pedidos')->where('enviado', 'S')->get();
+        $user = User::where('id', $pedido->user_id);
+
+        return view('admin.pedidos-enviados', compact('pedidos', 'user'));
+    }
+
+    public function cancelados(Pedido $pedido)
+    {
+        $pedidos = DB::table('pedidos')->where('status', 'CA')->get();
+        $user = User::where('id', $pedido->user_id);
+
+        return view('admin.pedidos-cancelados', compact('pedidos', 'user'));
     }
 
     /**
@@ -125,6 +170,36 @@ class PedidoController extends Controller
     public function update(Request $request, Pedido $pedido)
     {
         //
+    }
+
+    public function aprovar(Request $request, Pedido $pedido, $id)
+    {
+        $pedido = Pedido::find($id);
+
+        $pedido->status = "AP";
+        $pedido->save();
+
+        return redirect()->route('admin.pedidos');
+    }
+
+    public function enviar(Request $request, Pedido $pedido, $id)
+    {
+        $pedido = Pedido::find($id);
+
+        $pedido->enviado = "S";
+        $pedido->save();
+
+        return redirect()->route('admin.pedidos');
+    }
+
+    public function cancelar(Request $request, Pedido $pedido, $id)
+    {
+        $pedido = Pedido::find($id);
+
+        $pedido->status = "CA";
+        $pedido->save();
+
+        return redirect()->route('admin.pedidos');
     }
 
     /**

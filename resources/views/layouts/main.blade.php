@@ -40,6 +40,7 @@
             #content-wrap {
                 padding-bottom: 2.5rem;    /* Footer height */
             }
+            
         </style>
 
         <div id="page-container">

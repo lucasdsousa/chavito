@@ -22,12 +22,21 @@
                 Pedidos
               </a>
               <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                <li><a class="dropdown-item" href="#">Aprovados</a></li>
-                <li><a class="dropdown-item" href="#">Aguardando Aprovação</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.pedidos') }}">Todos os Pedidos</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Aguardando Envio</a></li>
+                <li><a class="dropdown-item" href="{{ route('pedidos-aprovados') }}">Aprovados</a></li>
+                <li><a class="dropdown-item" href="{{ route('pedidos-aprovacao') }}">Aguardando Aprovação</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="{{ route('pedidos-enviado') }}">Enviados</a></li>
+                <li><a class="dropdown-item" href="{{ route('pedidos-envio') }}">Aguardando Envio</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="{{ route('pedidos-cancelados') }}">Cancelados</a></li>
               </ul>
             </li>
             <li class="nav-item">
