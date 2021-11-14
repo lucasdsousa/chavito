@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImagesTable extends Migration
+class CreateChavitosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +15,12 @@ class CreateImagesTable extends Migration
     {
         Schema::create('chavitos', function (Blueprint $table) {
             $table->id();
-            $table->string('image_name');
             $table->string('title');
             $table->string('descricao');
             $table->float('valor');
             $table->string('slug');
+            $table->string('image_name');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +31,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('chavitos');
     }
 }

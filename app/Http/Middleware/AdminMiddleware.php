@@ -8,19 +8,19 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
-    public function handle(Request $request, Closure $next)
-    {
-        if (Auth::user()->user_type == 'ADMIN'){
-          return $next($request);
-        } else {
-          return redirect('/admin');
-        }
+  /**
+   * Handle an incoming request.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  \Closure  $next
+   * @return mixed
+   */
+  public function handle(Request $request, Closure $next)
+  {
+    if (Auth::user()->user_type == 'ADMIN') {
+      return $next($request);
+    } else {
+      return redirect('/admin');
     }
+  }
 }

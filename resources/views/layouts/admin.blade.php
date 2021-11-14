@@ -45,6 +45,7 @@
         <div id="page-container">
             <div id="content-wrap">
                 @component('components.sidenav')@endcomponent
+                <br><br><br>
                 @yield('content')
             </div>
         </div>

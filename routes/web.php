@@ -30,7 +30,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('/alterar-cadastro/{id}', [RegisteredUserController::class, 'edit'])->name('alterar-cadastro');
 Route::post('/alterar-cadastro/{id}', [RegisteredUserController::class, 'update']);
@@ -58,21 +58,37 @@ Route::get('/Pedido/{slug}', [PedidoController::class, 'create'])->middleware(['
 Route::post('/add-carrinho', [PedidoController::class, 'store'])->middleware(['auth'])->name('carrinho_add');
 //Route::post('/Pedido/{slug}', [PedidoController::class, 'store'])->name('pedido');
 
-Route::get('/success', function(){
+Route::get('/success', function () {
     return view('success');
 });
 
-Route::get('/failure', function(){
+Route::get('/failure', function () {
     return view('failure');
 });
 
-Route::get('/pending', function(){
+Route::get('/pending', function () {
     return view('pending');
 });
 
 
-Route::get('/Pagamento', function(){
+Route::get('/Pagamento', function () {
     return view('pagamento');
 })->middleware(['auth']);
 
-Route::get('admin', [AdminController::class, 'index'])->middleware(['auth']);
+Route::get('admin', [AdminController::class, 'index'])->middleware(['auth'])->name('admin');
+
+Route::get('admin/chavitos', [AdminController::class, 'showChavitos'])->middleware(['auth'])->name('admin.chavitos');
+Route::get('admin/chavitos/novo', [AdminController::class, 'createChavito'])->middleware(['auth']);
+Route::post('admin/chavitos/novo', [AdminController::class, 'storeChavito'])->middleware(['auth'])->name('chavitos-novo');
+Route::get('admin/chavitos/editar-{id}', [AdminController::class, 'editChavito'])->middleware(['auth']);
+Route::post('admin/chavitos/editar-{id}', [AdminController::class, 'updateChavito'])->middleware(['auth'])->name('chavitos-editar');
+Route::post('admin/chavitos/apagar-{id}', [AdminController::class, 'destroyChavito'])->middleware(['auth'])->name('chavitos-apagar');
+
+Route::get('admin/administradores', [AdminController::class, 'show'])->middleware(['auth'])->name('admin.administradores');
+Route::get('admin/administradores/novo', [AdminController::class, 'create'])->middleware(['auth']);
+Route::post('admin/administradores/novo', [AdminController::class, 'store'])->middleware(['auth'])->name('admin-novo');
+Route::get('admin/administradores/editar-{id}', [AdminController::class, 'edit'])->middleware(['auth']);
+Route::post('admin/administradores/editar-{id}', [AdminController::class, 'update'])->middleware(['auth'])->name('admin-editar');
+Route::post('admin/administradores/apagar-{id}', [AdminController::class, 'destroy'])->middleware(['auth'])->name('admin-apagar');
+
+Route::get('admin/pedidos', [AdminController::class, 'showPedidos'])->middleware(['auth'])->name('admin.pedidos');
