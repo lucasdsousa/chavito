@@ -77,12 +77,12 @@ Route::get('/Pagamento', function () {
 
 Route::get('admin', [AdminController::class, 'index'])->middleware(['auth'])->name('admin');
 
-Route::get('admin/chavitos', [AdminController::class, 'showChavitosAdmin'])->middleware(['auth'])->name('admin.chavitos');
-Route::get('admin/chavitos/novo', [AdminController::class, 'createChavito'])->middleware(['auth']);
-Route::post('admin/chavitos/novo', [AdminController::class, 'storeChavito'])->middleware(['auth'])->name('chavitos-novo');
-Route::get('admin/chavitos/editar-{id}', [AdminController::class, 'editChavito'])->middleware(['auth']);
-Route::post('admin/chavitos/editar-{id}', [AdminController::class, 'updateChavito'])->middleware(['auth'])->name('chavitos-editar');
-Route::post('admin/chavitos/apagar-{id}', [AdminController::class, 'destroyChavito'])->middleware(['auth'])->name('chavitos-apagar');
+Route::get('admin/chavitos', [ChavitoController::class, 'showChavitosAdmin'])->middleware(['auth'])->name('admin.chavitos');
+Route::get('admin/chavitos/novo', [ChavitoController::class, 'create'])->middleware(['auth']);
+Route::post('admin/chavitos/novo', [ChavitoController::class, 'store'])->middleware(['auth'])->name('chavitos-novo');
+Route::get('admin/chavitos/editar-{id}', [ChavitoController::class, 'edit'])->middleware(['auth']);
+Route::post('admin/chavitos/editar-{id}', [ChavitoController::class, 'update'])->middleware(['auth'])->name('chavitos-editar');
+Route::post('admin/chavitos/apagar-{id}', [ChavitoController::class, 'destroy'])->middleware(['auth'])->name('chavitos-apagar');
 
 Route::get('admin/administradores', [AdminController::class, 'show'])->middleware(['auth'])->name('admin.administradores');
 Route::get('admin/administradores/novo', [AdminController::class, 'create'])->middleware(['auth']);
@@ -95,6 +95,8 @@ Route::get('admin/pedidos', [PedidoController::class, 'show'])->middleware(['aut
 Route::get('admin/pedidos/aprovados', [PedidoController::class, 'aprovados'])->middleware(['auth'])->name('pedidos-aprovados');
 Route::get('admin/pedidos/aprovacao', [PedidoController::class, 'aprovacao'])->middleware(['auth'])->name('pedidos-aprovacao');
 Route::post('admin/pedidos/aprovar-{id}', [PedidoController::class, 'aprovar'])->middleware(['auth'])->name('pedidos-aprovar');
+Route::post('admin/pedidos/produzir-{id}', [PedidoController::class, 'produzir'])->middleware(['auth'])->name('pedidos-produzir');
+Route::get('admin/pedidos/producao', [PedidoController::class, 'produzindo'])->middleware(['auth'])->name('pedidos-producao');
 Route::get('admin/pedidos/enviados', [PedidoController::class, 'enviados'])->middleware(['auth'])->name('pedidos-enviado');
 Route::get('admin/pedidos/envio', [PedidoController::class, 'envio'])->middleware(['auth'])->name('pedidos-envio');
 Route::post('admin/pedidos/enviar-{id}', [PedidoController::class, 'enviar'])->middleware(['auth'])->name('pedidos-enviar');

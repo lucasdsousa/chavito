@@ -31,6 +31,10 @@
                 <li>
                   <hr class="dropdown-divider">
                 </li>
+                <li><a class="dropdown-item" href="{{ route('pedidos-producao') }}">Em Produção</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
                 <li><a class="dropdown-item" href="{{ route('pedidos-enviado') }}">Enviados</a></li>
                 <li><a class="dropdown-item" href="{{ route('pedidos-envio') }}">Aguardando Envio</a></li>
                 <li>

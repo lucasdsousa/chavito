@@ -15,11 +15,55 @@
         <form method="POST" action="{{ route('carrinho_add') }}" enctype="multipart/form-data">
             @csrf
 
-            <div>
-                <x-label for="image" :value="__('Imagem')" />
+            @if ($slug == "chavito-frase" || $slug == "chavito-nome" || $slug == "chavito-musica")
 
-                <input id="image" class="block mt-1 w-full" type="file" name="image" required autofocus />
-            </div>
+              <div>
+                <x-label for="frase" :value="__('Escolha a frase do seu Chavito')" />
+
+                <input id="frase" class="block mt-1 w-full" type="text" name="frase" required autofocus />
+              </div>
+
+            @else
+              <div>                      
+                <x-label for="image" :value="__('Escolha a imagem do seu Chavito')" />
+
+                <input id="image" class="block mt-1 w-full" type="file" name="image" autofocus />
+              </div>
+            
+            <ul class="collapsible" style="margin-top: 50px">
+                <li>
+                  <div class="collapsible-header">Adicionar Verso</div>
+                  <div class="collapsible-body">                      
+                    <x-label for="verso" :value="__('Escolha a imagem do verso do seu Chavito')" />
+    
+                    <input id="verso" class="block mt-1 w-full" type="file" name="verso" autofocus />
+
+                    <br>
+                    <h4>Ou</h4>
+                    <br>
+                                       
+                    <x-label for="fraseVerso" :value="__('Escolha a frase do verso do seu Chavito')" />
+    
+                    <input id="fraseVerso" class="block mt-1 w-full" type="text" name="fraseVerso" autofocus />
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header">Adicionar Pingente</div>
+                  <div class="collapsible-body">                      
+                    <x-label for="pingente" :value="__('Escolha a imagem do pingente do seu Chavito')" />
+    
+                    <input id="pingente" class="block mt-1 w-full" type="file" name="pingente" autofocus />
+
+                    <br>
+                    <h4>Ou</h4>
+                    <br>
+                                       
+                    <x-label for="frasePingente" :value="__('Escolha a frase do pingente do seu Chavito')" />
+    
+                    <input id="frasePingente" class="block mt-1 w-full" type="text" name="frasePingente" autofocus />
+                  </div>
+                </li>
+            </ul>
 
             <div class="mt-4" hidden>
                 <x-label for="modelo" :value="__('Modelo')" />
@@ -52,7 +96,8 @@
                                 required autocomplete="current-quantidade"
                                 readonly
                                 value="1" />
-            </div>
+            </div>                
+            @endif
 
             <div class="flex items-center justify-end mt-4">
                 
@@ -74,6 +119,13 @@
         </form>
         <br><br>
     <p style="text-align: center">*Os pagamentos são realizados pelo MercadoPago.</p>
+
+    <script>
+         document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.collapsible');
+            var instances = M.Collapsible.init(elems);
+        });
+    </script>
 
     </x-auth-card>
 </x-guest-layout>

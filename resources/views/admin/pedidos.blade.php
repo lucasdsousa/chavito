@@ -33,7 +33,7 @@
                     <td>{{ $p->status }}</td>
                     <td>{{ $p->enviado }}</td>
 
-                    @if ($p->status == "RE")
+                    @if ($p->status == "PP")
                         <td>
                             <form action="{{ route('pedidos-aprovar', $p->id) }}" method="POST">
                                 @csrf

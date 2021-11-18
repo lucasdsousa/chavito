@@ -23,7 +23,7 @@
                                 <td>
                                     <p>{{ $i->modelo }}</p>
                                     <br>
-                                    <img src="{{ asset('storage/'.$i->image) }}" alt="" style="width:25%">
+                                    <img src="{{ asset('storage/app/public/'.$i->image) }}" alt="" style="width:25%">
                                 </td>
                                 <!-- <td>
                                     <p id="qty" name="qty">1</p>

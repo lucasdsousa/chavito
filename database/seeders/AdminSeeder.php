@@ -18,6 +18,7 @@ class AdminSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Gabi',
             'email' => 'admin.gabi@admin.com',
+            'cpf' => '99999999999',
             'user_type' => 'ADMIN',
             'password' => Hash::make('999999999'),
         ]);

@@ -32,6 +32,12 @@
                 <x-input id="numero" class="block mt-1 w-full" type="text" name="numero" :value="old('numero')" required />
             </div>
 
+            <div class="mt-4">
+                <x-label for="complemento" :value="__('Complemento')" />
+
+                <x-input id="complemento" class="block mt-1 w-full" type="text" name="complemento" :value="old('complemento')" />
+            </div>
+
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="bairro" :value="__('Bairro')" />

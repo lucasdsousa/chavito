@@ -33,11 +33,11 @@
                     <td>{{ $p->status }}</td>
                     <td>{{ $p->enviado }}</td>
 
-                    @if ($p->status == "AP")
+                    @if ($p->status == "EP")
                         <td>
-                            <form action="{{ route('pedidos-produzir', $p->id) }}" method="POST">
+                            <form action="{{ route('pedidos-enviar', $p->id) }}" method="POST">
                                 @csrf
-                                <button class="btn btn-success mb-2" type="submit">Produzir</button>
+                                <button class="btn btn-success mb-2" type="submit">Enviar</button>
                             </form>
                             <form action="{{ route('pedidos-cancelar', $p->id) }}" method="POST">
                                 @csrf

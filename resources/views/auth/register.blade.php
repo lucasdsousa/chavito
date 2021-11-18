@@ -26,9 +26,16 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
+            <!-- CPF -->
+            <div class="mt-4">
+                <x-label for="cpf" :value="__('CPF (Apenas Números)')" />
+
+                <x-input id="cpf" class="block mt-1 w-full" type="text" maxlength="11" name="cpf" :value="old('cpf')" required />
+            </div>
+
             <!-- Email Address -->
             <div class="mt-4">
-                <x-label for="tel" :value="__('Telefone (DDD + Número)')" />
+                <x-label for="tel" :value="__('Whatsapp (DDD + Número)')" />
 
                 <x-input id="tel" class="block mt-1 w-full" type="tel" maxlength="17" name="tel" :value="old('tel')" required />
             </div>

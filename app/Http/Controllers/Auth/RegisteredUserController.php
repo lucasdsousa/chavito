@@ -43,6 +43,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'cpf' => $request->cpf,
             'tel' => $request->tel,
             'password' => Hash::make($request->password),
         ]);
@@ -62,7 +63,7 @@ class RegisteredUserController extends Controller
 
     public function update(Request $request, $id)
     {
-        
+
         $user = User::find($id);
 
         $user->name = $request->input('name');

@@ -51,6 +51,7 @@ class EnderecoController extends Controller
         $endereco->user_id = Auth::id();
         $endereco->rua = $request->input('rua');
         $endereco->numero = $request->input('numero');
+        $endereco->complemento = $request->input('complemento');
         $endereco->bairro = $request->input('bairro');
         $endereco->cidade = $request->input('cidade');
         $endereco->uf = $request->input('uf');
@@ -102,7 +103,7 @@ class EnderecoController extends Controller
         $endereco->cep = $request->input('cep');
         $endereco->save();
 
-        return redirect()->route('dashboard'); 
+        return redirect()->route('dashboard');
     }
 
     /**
