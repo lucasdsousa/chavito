@@ -18,6 +18,7 @@ class ChavitoSeeder extends Seeder
             'image_name' => 'images/chavito_dia_especial.jpg',
             'title' => 'Chavito Dia Especial',
             'descricao' => 'Marque no calendário uma data que jamais deve ser esquecida.',
+            'categoriaID' => 1,
             'valor' => 20.00,
             'slug' => 'chavito-dia-especial'
         ]);
@@ -25,6 +26,7 @@ class ChavitoSeeder extends Seeder
             'image_name' => 'images/chavito_duplo.jpg',
             'title' => 'Chavito Duplo',
             'descricao' => 'Tenha no bolso as fotografias mais marcantes.',
+            'categoriaID' => 1,
             'valor' => 20.00,
             'slug' => 'chavito-duplo'
         ]);
@@ -32,6 +34,7 @@ class ChavitoSeeder extends Seeder
             'image_name' => 'images/chavito_frase.jpg',
             'title' => 'Chavito Frase',
             'descricao' => 'Carregue sempre seu lema com você.',
+            'categoriaID' => 1,
             'valor' => 20.00,
             'slug' => 'chavito-frase'
         ]);
@@ -39,6 +42,7 @@ class ChavitoSeeder extends Seeder
             'image_name' => 'images/chavito_nome.jpg',
             'title' => 'Chavito Nome',
             'descricao' => 'O clichê que todo mundo adora XD.',
+            'categoriaID' => 1,
             'valor' => 20.00,
             'slug' => 'chavito-nome'
         ]);
@@ -46,6 +50,7 @@ class ChavitoSeeder extends Seeder
             'image_name' => 'images/chavito_musica.jpg',
             'title' => 'Chavito Música',
             'descricao' => 'A sua música favorita eternizada e sempre com você.',
+            'categoriaID' => 1,
             'valor' => 20.00,
             'slug' => 'chavito-musica'
         ]);
@@ -53,6 +58,7 @@ class ChavitoSeeder extends Seeder
             'image_name' => 'images/chavito_frente_verso.jpg',
             'title' => 'Chavito Metal',
             'descricao' => 'As mais belas lembranças e sentimentos sempre com você.',
+            'categoriaID' => 1,
             'valor' => 20.00,
             'slug' => 'chavito-metal'
         ]);
@@ -60,6 +66,7 @@ class ChavitoSeeder extends Seeder
             'image_name' => 'images/chavito_casal.jpg',
             'title' => 'Chavito Casal',
             'descricao' => 'Aquele amor de cinema que vive pra sempre.',
+            'categoriaID' => 1,
             'valor' => 20.00,
             'slug' => 'chavito-casal'
         ]);
@@ -67,6 +74,7 @@ class ChavitoSeeder extends Seeder
             'image_name' => 'images/chavito_namorados.jpg',
             'title' => 'Chavito Namorados',
             'descricao' => 'As mais belas lembranças e sentimentos sempre com você.',
+            'categoriaID' => 1,
             'valor' => 20.00,
             'slug' => 'chavito-namorados'
         ]);

@@ -18,7 +18,7 @@
             @if ($slug == "chavito-frase" || $slug == "chavito-nome" || $slug == "chavito-musica")
 
               <div>
-                <x-label for="frase" :value="__('Escolha a frase do seu Chavito')" />
+                <x-label for="frase" :value="__('Digite o texto do seu Chavito')" />
 
                 <input id="frase" class="block mt-1 w-full" type="text" name="frase" required autofocus />
               </div>
@@ -27,7 +27,7 @@
               <div>                      
                 <x-label for="image" :value="__('Escolha a imagem do seu Chavito')" />
 
-                <input id="image" class="block mt-1 w-full" type="file" name="image" autofocus />
+                <input id="image" class="block mt-1 w-full" type="file" name="image" autofocus required/>
               </div>
             
             <ul class="collapsible" style="margin-top: 50px">

@@ -7,9 +7,9 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a class="grey-text text-darken-3" href="/">Home</a></li>
                 <li><a class="grey-text text-darken-3" href="/Catalogo">Catálogo</a></li>
-                <!-- <li><a class="grey-text text-darken-3" href="/Do-seu-jeito">Do Seu Jeito</a></li> -->
+                <!-- <li><a class="grey-text text-darken-3" href="/Do-seu-jeito">Do Seu Jeito</a></li>
                 <li><a class="grey-text text-darken-3" href="#">Contato</a></li>
-                <li><a class="grey-text text-darken-3" href="#">Sobre Nós</a></li>
+                <li><a class="grey-text text-darken-3" href="#">Sobre Nós</a></li> -->
         
                 @if (Route::has('login'))
                         @auth

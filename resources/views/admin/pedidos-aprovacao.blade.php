@@ -25,7 +25,7 @@
                 <tr>
                     <th scope="row">{{ $p->id }}</th>
                     <td>{{ $p->user_id }}</td>
-                    <td><img src="{{ asset($p->image) }}" alt=""></td>
+                    <td><img src="{{ asset('storage/'.$p->image) }}" alt="" style="width:50%"></td>
                     <td>{{ $p->modelo }}</td>
                     <td>{{ $p->pingente }}</td>
                     <td>{{ $p->quantidade }}</td>
@@ -33,7 +33,7 @@
                     <td>{{ $p->status }}</td>
                     <td>{{ $p->enviado }}</td>
 
-                    @if ($p->status == "PP")
+                    @if ($p->status == "RE")
                         <td>
                             <form action="{{ route('pedidos-aprovar', $p->id) }}" method="POST">
                                 @csrf

@@ -16,7 +16,7 @@ class CreatePedidosTable extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('frase')->nullable();
             $table->string('modelo');
             $table->string('verso')->nullable();
@@ -26,7 +26,9 @@ class CreatePedidosTable extends Migration
             $table->float('valor');
             $table->integer('quantidade');
             $table->string('status');
+            $table->string('pago');
             $table->string('enviado');
+            $table->string('rastreio')->nullable();
             $table->timestamps();
         });
     }

@@ -119,9 +119,14 @@ class CarrinhoController extends Controller
         $item = new MercadoPago\Item();
         $item->title = "Chavito"; //$produto->title;
         $item->quantity = sizeof($items) == 0 ? 1 : $items->sum('quantidade'); //$request->input('quantidade');
-        $item->unit_price = sizeof($items) == 0 ? 0.01 : $total; //$produto->valor;
+        $item->unit_price = 1; //sizeof($items) == 0 ? 0.01 : $total; //$produto->valor;
+
+        $payer = new MercadoPago\Payer();
+        $payer->name = Auth::user()->name;
+        $payer->email = Auth::user()->email;
+        
         $preference->items = array($item);
-        $preference->save();
+        $preference->payer = $payer;
         
         $preference->back_urls = array(
             "success" => "http://localhost:8000/success",
@@ -130,6 +135,8 @@ class CarrinhoController extends Controller
         );
 
         $preference->auto_return = "approved";
+
+        $preference->save();
 
         return view('carrinho', compact('user_id', 'items', 'items_sum', 'preference', 'public_key', 'frete', 'total'));
     }

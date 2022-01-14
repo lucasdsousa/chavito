@@ -18,6 +18,7 @@
               <th scope="col">Valor</th>
               <th scope="col">Status</th>
               <th scope="col">Enviado</th>
+              <th scope="col">Rastreio</th>
             </tr>
           </thead>
           <tbody>
@@ -32,6 +33,7 @@
                     <td>{{ $p->valor }}</td>
                     <td>{{ $p->status }}</td>
                     <td>{{ $p->enviado }}</td>
+                    <td>{{ $p->rastreio }}</td>
 
                     @if ($p->status == "RE")
                         <td>

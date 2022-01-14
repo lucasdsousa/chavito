@@ -105,7 +105,8 @@ class PedidoController extends Controller
         }
 
         $pedido->quantidade = 1; //$request->input('quantidade');
-        $pedido->status = "PP";
+        $pedido->status = "RE";
+        $pedido->pago = "N";
         $pedido->enviado = "N";
 
         $pedido->save();
@@ -129,7 +130,7 @@ class PedidoController extends Controller
 
     public function aprovados(Pedido $pedido)
     {
-        $pedidos = DB::table('pedidos')->where('status', 'AP')->get();
+        $pedidos = DB::table('pedidos')->where('status', 'APR')->get();
         $user = User::where('id', $pedido->user_id);
 
         return view('admin.pedidos-aprovados', compact('pedidos', 'user'));
@@ -137,7 +138,7 @@ class PedidoController extends Controller
 
     public function aprovacao(Pedido $pedido)
     {
-        $pedidos = DB::table('pedidos')->where('status', 'PP')->get();
+        $pedidos = DB::table('pedidos')->where('status', 'RE')->get();
         $user = User::where('id', $pedido->user_id);
 
         return view('admin.pedidos-aprovacao', compact('pedidos', 'user'));
@@ -145,7 +146,7 @@ class PedidoController extends Controller
 
     public function producao(Pedido $pedido)
     {
-        $pedidos = DB::table('pedidos')->where('status', 'AP')->get();
+        $pedidos = DB::table('pedidos')->where('status', 'APD')->get();
         $user = User::where('id', $pedido->user_id);
 
         return view('admin.pedidos-producao', compact('pedidos', 'user'));
@@ -153,7 +154,7 @@ class PedidoController extends Controller
 
     public function produzindo(Pedido $pedido)
     {
-        $pedidos = DB::table('pedidos')->where('status', 'EP')->get();
+        $pedidos = DB::table('pedidos')->where('status', 'EPD')->get();
         $user = User::where('id', $pedido->user_id);
 
         return view('admin.pedidos-producao', compact('pedidos', 'user'));
@@ -161,7 +162,7 @@ class PedidoController extends Controller
 
     public function envio(Pedido $pedido)
     {
-        $pedidos = DB::table('pedidos')->where('enviado', 'N')->get();
+        $pedidos = DB::table('pedidos')->where('enviado', 'N')->where('status', 'FINAL')->get();
         $user = User::where('id', $pedido->user_id);
 
         return view('admin.pedidos-envio', compact('pedidos', 'user'));
@@ -210,7 +211,7 @@ class PedidoController extends Controller
     {
         $pedido = Pedido::find($id);
 
-        $pedido->status = "AP";
+        $pedido->status = "APR";
         $pedido->save();
 
         return redirect()->route('admin.pedidos');
@@ -220,7 +221,17 @@ class PedidoController extends Controller
     {
         $pedido = Pedido::find($id);
 
-        $pedido->status = "EP";
+        $pedido->status = "EPD";
+        $pedido->save();
+
+        return redirect()->route('admin.pedidos');
+    }
+
+    public function finalizado(Request $request, Pedido $pedido, $id)
+    {
+        $pedido = Pedido::find($id);
+
+        $pedido->status = "FINAL";
         $pedido->save();
 
         return redirect()->route('admin.pedidos');
@@ -230,7 +241,9 @@ class PedidoController extends Controller
     {
         $pedido = Pedido::find($id);
 
+        $pedido->status = "ENV";
         $pedido->enviado = "S";
+        $pedido->rastreio = $request->input('rastreio');
         $pedido->save();
 
         return redirect()->route('admin.pedidos');

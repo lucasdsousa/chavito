@@ -2,17 +2,62 @@
 
 @section('content')
 
-<div class="carousel container" style="margin-top: -300px; height:750px">
-    @foreach($chav as $i)
-    
-        <a class="carousel-item" href="#two!" style="width: 30%"><img src="{{ asset($i->image_name) }}" style="border-radius: 5%"></a>
+<style>
+.container-img {
+  position: relative;
+  width: 25%;
+  left:100px;
+  margin-bottom:50px;
+}
 
-    @endforeach
-    <!-- <a class="carousel-item" href="#one!" style="width: 30%"><img src="{{ asset('images/chavito_casal.jpg') }}" style="border-radius: 50%"></a>
-    <a class="carousel-item" href="#two!" style="width: 30%"><img src="{{ asset('images/chavito_casal.jpg') }}" style="border-radius: 50%"></a>
-    <a class="carousel-item" href="#three!" style="width: 30%"><img src="{{ asset('images/chavito_casal.jpg') }}" style="border-radius: 50%"></a>
-    <a class="carousel-item" href="#four!" style="width: 30%"><img src="{{ asset('images/chavito_casal.jpg') }}" style="border-radius: 50%"></a>
-    <a class="carousel-item" href="#five!" style="width: 30%"><img src="{{ asset('images/chavito_casal.jpg') }}" style="border-radius: 50%"></a> -->
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container-img:hover .image {
+  opacity: 0.3;
+}
+
+.container-img:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #04AA6D;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+</style>
+
+
+<div class="row">
+@foreach($chav as $i)
+  <a class="btn-large" href="/Pedido/{{ $i->slug }}" style="background: #ff4d94; font-weight: bold; width:100%">{{ $i->title }}</a>
+
+    <div class="container-img col s3">
+      <img class="image" src="{{ asset($i->image_name) }}" alt="" style="width:100%">
+      <div class="middle">
+        <a class="btn-large" href="/Pedido/{{ $i->slug }}" style="background: #ff4d94; font-weight: bold; width:100%">{{ $i->title }}</a>
+      </div>
+    </div>
+@endforeach
 </div>
 
 <div class="container center-align">

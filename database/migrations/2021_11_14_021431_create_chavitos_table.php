@@ -17,9 +17,11 @@ class CreateChavitosTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('descricao');
+            $table->unsignedBigInteger('categoriaID');
             $table->float('valor');
             $table->string('slug');
             $table->string('image_name');
+            $table->foreign('categoriaID')->references('id')->on('categorias');
             $table->timestamps();
         });
     }

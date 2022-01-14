@@ -33,10 +33,12 @@
                     <td>{{ $p->status }}</td>
                     <td>{{ $p->enviado }}</td>
 
-                    @if ($p->status == "EP")
+                    @if ($p->status == "EPD" && $p->enviado == "N")
                         <td>
                             <form action="{{ route('pedidos-enviar', $p->id) }}" method="POST">
                                 @csrf
+                                <label for="rastreio">Rastreio</label>
+                                <input class="form-control mb-3" type="text" name="rastreio" required>
                                 <button class="btn btn-success mb-2" type="submit">Enviar</button>
                             </form>
                             <form action="{{ route('pedidos-cancelar', $p->id) }}" method="POST">

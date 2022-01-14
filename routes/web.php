@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ChavitoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\EnderecoController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Models\Pedido;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,22 +54,37 @@ Route::get('/Catalogo', [ChavitoController::class, 'show']);
 //Route::get('/Carrinho', [CarrinhoController::class, 'index'])->middleware(['auth'])->name('carrinho');
 Route::get('/Carrinho', [CarrinhoController::class, 'show'])->middleware(['auth'])->name('carrinho');
 Route::post('/Comprar', [CarrinhoController::class, 'store'])->middleware(['auth'])->name('comprar');
-Route::get('/cu/{id}', [CarrinhoController::class, 'destroy']);
+Route::get('/Carrinho/{id}', [CarrinhoController::class, 'destroy']);
 
 Route::get('/Pedido/{slug}', [PedidoController::class, 'create'])->middleware(['auth'])->name('pedido_new');
 Route::post('/add-carrinho', [PedidoController::class, 'store'])->middleware(['auth'])->name('carrinho_add');
 //Route::post('/Pedido/{slug}', [PedidoController::class, 'store'])->name('pedido');
 
 Route::get('/success', function () {
-    return view('success');
+    $pedido = Pedido::find($id);
+
+    $pedido->pago = "S";
+    $pedido->save();
+
+    return redirect()->route('dashboard');
 });
 
-Route::get('/failure', function () {
-    return view('failure');
+Route::get('/failure/{id}', function ($id) {
+    $pedido = Pedido::find($id);
+
+    $pedido->pago = "N";
+    $pedido->save();
+
+    return redirect()->route('dashboard');
 });
 
 Route::get('/pending', function () {
-    return view('pending');
+    $pedido = Pedido::find($id);
+
+    $pedido->pago = "N";
+    $pedido->save();
+
+    return redirect()->route('dashboard');
 });
 
 

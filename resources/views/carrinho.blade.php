@@ -23,7 +23,7 @@
                                 <td>
                                     <p>{{ $i->modelo }}</p>
                                     <br>
-                                    <img src="{{ asset('storage/app/public/'.$i->image) }}" alt="" style="width:25%">
+                                    <img src="{{ asset('storage/'.$i->image) }}" alt="" style="width:25%">
                                 </td>
                                 <!-- <td>
                                     <p id="qty" name="qty">1</p>
@@ -31,7 +31,7 @@
                                     <a href="#" onclick="removefromcart()"><i class="bi bi-dash-circle"></i></a>
                                 </td> -->
                                 <td id="price">R$ {{ $i->valor }},00</td>
-                                <td><a href="/cu/{{ $i->id }}">Remover</a></td>
+                                <td><a href="/Carrinho/{{ $i->id }}">Remover</a></td>
 
                                 <input  type="text" name="image" value="{{ $i->image }}" hidden>
                                 <input  type="text" name="chav_id" value="{{ $i->id }}" hidden>
@@ -41,13 +41,11 @@
                         </tr>
 
                     @empty
-                        <p class="center">Você ainda não adicionou produtos ao seu carrinho.</p>
-
-                        <script>
-                            document.getElementById("tableCarrinho").style.display = "none";
-                            document.getElementById("cardBottom").style.display = "none";
-                        </script>
-                        
+                        <div class="container center">
+                            <p class="center">Você ainda não adicionou produtos ao seu carrinho.</p>
+                            <br><br>
+                            <a class="waves-effect waves-light btn pink" href="/Catalogo">Ver Catálogo</a>
+                        </div>
                     @endforelse
                 
                 </tbody>
@@ -60,6 +58,7 @@
             <p>Subtotal: R$ {{ $items_sum }},00</p>
             <p>Frete: R$ {{ $frete->valor }},00 para {{ $frete->uf }}</p>
             <h5>Total: R$ {{ $total }},00</h5>
+            <a href="{{ $preference->init_point }}" target="_blank">Pagar</a>
         </div>
 
         <script>
@@ -72,20 +71,17 @@
             mp.checkout({
                 preference: {
                     id: '{{ $preference->id }}'
-                },
-                render: {
-                        container: '.cho-container', // Indica onde o botão de pagamento será exibido
-                        label: 'Comprar', // Muda o texto do botão de pagamento (opcional)
                 }
             });
-
-            // Invocando a função posteriormente
-            checkout.render({
-                container: '.cho-container',
-                label: 'Pagar'
-            })
         </script>
     </div>
+
+    @if(sizeof($items) < 1)
+        <script>
+            document.getElementById("tableCarrinho").style.display = "none";
+            document.getElementById("cardBottom").style.display = "none";
+        </script>
+    @endif
 
 </div>
 
