@@ -16,8 +16,9 @@ class ChavitoController extends Controller
     public function index()
     {
         $chav = DB::table('chavitos')->get();
+        $cats = DB::table('categorias')->get();
 
-        return view('index', compact('chav'));
+        return view('index', compact('chav', 'cats'));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ChavitoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\EnderecoController;
@@ -47,6 +48,7 @@ Route::post('/endereco', [EnderecoController::class, 'store']);
 Route::get('/', [ChavitoController::class, 'index'])->name('home');
 Route::get('/Catalogo', [ChavitoController::class, 'show']);
 
+Route::get('/Categoria/{id}', [CategoriaController::class, 'show']);
 /* Route::get('/Do-seu-jeito', function(){
     return view('personalizar');
 }); */

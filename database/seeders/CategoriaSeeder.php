@@ -16,17 +16,32 @@ class CategoriaSeeder extends Seeder
     {
         DB::table('categorias')->insert([
             'nomeCategoria' => "Chavito",
-            'imagemExemplo' => "images/chavito_instagram.jpeg"
+            'imagemExemplo' => "images/3-IMG_8633.jpg"
         ]);
 
         DB::table('categorias')->insert([
-            'nomeCategoria' => "Pin",
-            'imagemExemplo' => "images/"
+            'nomeCategoria' => "Acrypin",
+            'imagemExemplo' => "images/39-IMG_8699.jpg"
+        ]);
+
+        DB::table('categorias')->insert([
+            'nomeCategoria' => "Chavito Pet",
+            'imagemExemplo' => "images/33-IMG_8686.jpg"
         ]);
 
         DB::table('categorias')->insert([
             'nomeCategoria' => "Caixa",
             'imagemExemplo' => "images/"
+        ]);
+
+        DB::table('categorias')->insert([
+            'nomeCategoria' => "Placa Spotify",
+            'imagemExemplo' => "images/"
+        ]);
+
+        DB::table('categorias')->insert([
+            'nomeCategoria' => "Placa Especial",
+            'imagemExemplo' => "images/41-IMG_8705.jpg"
         ]);
 
         DB::table('categorias')->insert([
