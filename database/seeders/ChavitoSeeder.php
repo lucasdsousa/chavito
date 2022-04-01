@@ -14,14 +14,14 @@ class ChavitoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('chavitos')->insert([
+        /* DB::table('chavitos')->insert([
             'image_name' => 'images/1-IMG_8631.jpg',
             'title' => 'Chavito Dia Especial',
             'descricao' => 'Marque no calendário uma data que jamais deve ser esquecida.',
             'categoriaID' => 1,
             'valor' => 20.00,
             'slug' => 'chavito-dia-especial'
-        ]);
+        ]); */
         DB::table('chavitos')->insert([
             'image_name' => 'images/2-IMG_8632.jpg',
             'title' => 'Chavito Duplo',
@@ -41,7 +41,7 @@ class ChavitoSeeder extends Seeder
         DB::table('chavitos')->insert([
             'image_name' => 'images/4-IMG_8634.jpg',
             'title' => 'Chavito Cuidado',
-            'descricao' => 'O clichê que todo mundo adora XD.',
+            'descricao' => 'As mais belas lembranças e sentimentos sempre com você.',
             'categoriaID' => 1,
             'valor' => 20.00,
             'slug' => 'chavito-cuidado'
@@ -104,7 +104,7 @@ class ChavitoSeeder extends Seeder
         ]);
         DB::table('chavitos')->insert([
             'image_name' => 'images/12-IMG_8646.jpg',
-            'title' => 'Chavito Tattoo',
+            'title' => 'Chavito Marca',
             'descricao' => 'As mais belas lembranças e sentimentos sempre com você.',
             'categoriaID' => 1,
             'valor' => 20.00,
@@ -263,7 +263,7 @@ class ChavitoSeeder extends Seeder
             'slug' => 'chavito-placa'
         ]);
         DB::table('chavitos')->insert([
-            'image_name' => 'images/32-IMG_8685.jpg',
+            'image_name' => 'images/33-IMG_8686.jpg',
             'title' => 'Chavito Pet',
             'descricao' => 'As mais belas lembranças e sentimentos sempre com você.',
             'categoriaID' => 3,
@@ -271,7 +271,7 @@ class ChavitoSeeder extends Seeder
             'slug' => 'chavito-pet'
         ]);
         DB::table('chavitos')->insert([
-            'image_name' => 'images/33-IMG_8686.jpg',
+            'image_name' => 'images/32-IMG_8685.jpg',
             'title' => 'Chavito Pet',
             'descricao' => 'As mais belas lembranças e sentimentos sempre com você.',
             'categoriaID' => 3,
@@ -288,7 +288,7 @@ class ChavitoSeeder extends Seeder
         ]);
         DB::table('chavitos')->insert([
             'image_name' => 'images/35-IMG_8692.jpg',
-            'title' => 'Chavito Barber',
+            'title' => 'Chavito Marca',
             'descricao' => 'As mais belas lembranças e sentimentos sempre com você.',
             'categoriaID' => 1,
             'valor' => 20.00,

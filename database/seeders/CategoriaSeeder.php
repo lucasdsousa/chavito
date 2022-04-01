@@ -40,7 +40,7 @@ class CategoriaSeeder extends Seeder
         ]);
 
         DB::table('categorias')->insert([
-            'nomeCategoria' => "Placa Especial",
+            'nomeCategoria' => "Placas",
             'imagemExemplo' => "images/41-IMG_8705.jpg"
         ]);
 

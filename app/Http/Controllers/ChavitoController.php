@@ -59,9 +59,9 @@ class ChavitoController extends Controller
      */
     public function show(Chavito $chavito)
     {
-        $chav = DB::table('chavitos')->get();
+        //$chav = DB::table('chavitos')->paginate(9);
 
-        return view('catalogo', compact('chav'));
+        return view('catalogo', ['chav' => DB::table('chavitos')->paginate(6)]);
     }
 
     public function showChavitosAdmin()

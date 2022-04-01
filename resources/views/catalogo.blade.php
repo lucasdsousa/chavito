@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
 
-<div class="container">
+<div class="container" style="margin-bottom:100px">
     <h1>Nosso Catálogo</h1>
     <div class="row">
         @foreach($chav as $i)
@@ -21,7 +21,18 @@
                     </div>
                 </div>       
         @endforeach
-    </div>  
+    </div>
+    
+        <ul class="pagination">
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            
+            @for($i=1; $i<8; $i++)
+                <li class="active"><a href="/Catalogo?page={{ $i }}">{{ $i }}</a></li>
+            @endfor
+
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        </ul>
+
 </div> 
 
 @endsection

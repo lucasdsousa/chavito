@@ -84,6 +84,9 @@ class PedidoController extends Controller
         $pedido->user_id = Auth::id();
         $pedido->image = $request->file('image')->store('images/Pedidos', 'public');
         $pedido->frase = $request->input('frase');
+        $pedido->spotify = $request->input('spotify');
+        $pedido->date = $request->input('date');
+        $pedido->pix = $request->input('pix');
         $pedido->modelo = $request->input('modelo');
 
         if ($request->has('verso')) {

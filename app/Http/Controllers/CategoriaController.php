@@ -12,10 +12,6 @@ class CategoriaController extends Controller
     {
         $cats = DB::table('categorias')->where('id', $id)->get();
         $chav = DB::table('chavitos')->where('categoriaID', $id)->get();
-        
-        foreach($chav as $c) {
-            print_r($c->title);
-        }
 
         return view('produtos_categoria', compact('cats', 'chav'));
     }

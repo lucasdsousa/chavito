@@ -16,10 +16,13 @@ class CreatePedidosTable extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->string('modelo');
             $table->string('image')->nullable();
             $table->string('frase')->nullable();
-            $table->string('modelo');
             $table->string('verso')->nullable();
+            $table->string('spotify')->nullable();
+            $table->string('date')->nullable();
+            $table->string('pix')->nullable();
             $table->string('pingente')->nullable();
             $table->string('caixa')->nullable();
             $table->string('pin')->nullable();
