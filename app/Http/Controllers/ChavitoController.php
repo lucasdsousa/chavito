@@ -57,11 +57,17 @@ class ChavitoController extends Controller
      * @param  \App\Models\Chavito  $chavito
      * @return \Illuminate\Http\Response
      */
-    public function show(Chavito $chavito)
+    public function show(Chavito $chavito, Request $request)
     {
-        //$chav = DB::table('chavitos')->paginate(9);
+        $uri = $request->getRequestUri();
 
-        return view('catalogo', ['chav' => DB::table('chavitos')->paginate(6)]);
+        $chav = DB::table('chavitos')->where('id', '<=', '21')->paginate(9);
+        $chav3 = DB::table('chavitos')->whereBetween('id', ['22', '27'])->get();
+        $chav4 = DB::table('chavitos')->whereBetween('id', ['27', '35'])->get();
+        $chav5 = DB::table('chavitos')->whereBetween('id', ['36', '38'])->get();
+
+        return view('catalogo', compact('chav', 'chav3', 'chav4', 'chav5', 'uri'));
+        //return redirect()->route('catalogo', ['page' => 1])->with('chav', $chav);
     }
 
     public function showChavitosAdmin()

@@ -46,7 +46,7 @@ Route::post('/endereco', [EnderecoController::class, 'store']);
 
 
 Route::get('/', [ChavitoController::class, 'index'])->name('home');
-Route::get('/Catalogo', [ChavitoController::class, 'show']);
+Route::get('/Catalogo', [ChavitoController::class, 'show'])->name('catalogo');
 
 Route::get('/Categoria/{id}', [CategoriaController::class, 'show']);
 /* Route::get('/Do-seu-jeito', function(){
@@ -61,33 +61,6 @@ Route::get('/Carrinho/{id}', [CarrinhoController::class, 'destroy']);
 Route::get('/Pedido/{slug}', [PedidoController::class, 'create'])->middleware(['auth'])->name('pedido_new');
 Route::post('/add-carrinho', [PedidoController::class, 'store'])->middleware(['auth'])->name('carrinho_add');
 //Route::post('/Pedido/{slug}', [PedidoController::class, 'store'])->name('pedido');
-
-Route::get('/success', function () {
-    $pedido = Pedido::find($id);
-
-    $pedido->pago = "S";
-    $pedido->save();
-
-    return redirect()->route('dashboard');
-});
-
-Route::get('/failure/{id}', function ($id) {
-    $pedido = Pedido::find($id);
-
-    $pedido->pago = "N";
-    $pedido->save();
-
-    return redirect()->route('dashboard');
-});
-
-Route::get('/pending', function () {
-    $pedido = Pedido::find($id);
-
-    $pedido->pago = "N";
-    $pedido->save();
-
-    return redirect()->route('dashboard');
-});
 
 
 Route::get('/Pagamento', function () {
@@ -121,3 +94,34 @@ Route::get('admin/pedidos/envio', [PedidoController::class, 'envio'])->middlewar
 Route::post('admin/pedidos/enviar-{id}', [PedidoController::class, 'enviar'])->middleware(['auth'])->name('pedidos-enviar');
 Route::post('admin/pedidos/cancelar-{id}', [PedidoController::class, 'cancelar'])->middleware(['auth'])->name('pedidos-cancelar');
 Route::get('admin/pedidos/cancelados', [PedidoController::class, 'cancelados'])->middleware(['auth'])->name('pedidos-cancelados');
+
+/*
+
+Route::get('/success', function () {
+    $pedido = Pedido::find($id);
+
+    $pedido->pago = "S";
+    $pedido->save();
+
+    return redirect()->route('dashboard');
+});
+
+Route::get('/failure/{id}', function ($id) {
+    $pedido = Pedido::find($id);
+
+    $pedido->pago = "N";
+    $pedido->save();
+
+    return redirect()->route('dashboard');
+});
+
+Route::get('/pending', function () {
+    $pedido = Pedido::find($id);
+
+    $pedido->pago = "N";
+    $pedido->save();
+
+    return redirect()->route('dashboard');
+});
+
+*/

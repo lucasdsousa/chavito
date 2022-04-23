@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 class CategoriaController extends Controller
 {
-    public function show($id)
+    public function show($id, Request $request)
     {
-        $cats = DB::table('categorias')->where('id', $id)->get();
-        $chav = DB::table('chavitos')->where('categoriaID', $id)->get();
+        $uri = $request->getRequestUri();
+        $uri_name = substr($uri, 11);
+        $cat_id = DB::table('categorias')->where('nomeCategoria', substr($uri, 11))->first();
+        $chav = DB::table('chavitos')->where('categoriaID', $cat_id->id)->get();
 
-        return view('produtos_categoria', compact('cats', 'chav'));
+        return view('produtos_categoria', compact('chav'));
     }
 }

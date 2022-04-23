@@ -25,7 +25,7 @@ class CategoriaSeeder extends Seeder
         ]);
 
         DB::table('categorias')->insert([
-            'nomeCategoria' => "Chavito Pet",
+            'nomeCategoria' => "Chavito-Pet",
             'imagemExemplo' => "images/33-IMG_8686.jpg"
         ]);
 
@@ -35,17 +35,12 @@ class CategoriaSeeder extends Seeder
         ]);
 
         DB::table('categorias')->insert([
-            'nomeCategoria' => "Placa Spotify",
-            'imagemExemplo' => "images/"
-        ]);
-
-        DB::table('categorias')->insert([
             'nomeCategoria' => "Placas",
             'imagemExemplo' => "images/41-IMG_8705.jpg"
         ]);
 
         DB::table('categorias')->insert([
-            'nomeCategoria' => "Suporte Phone",
+            'nomeCategoria' => "Suporte-Phone",
             'imagemExemplo' => "images/"
         ]);
     }

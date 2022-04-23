@@ -53,7 +53,7 @@
       <div class="container-img col s3">
         <img class="image z-depth-4" src="{{ asset($i->imagemExemplo) }}" alt="" style="width:100%">
         <div class="middle">
-          <a class="btn-large" href="/Categoria/{{ $i->id }}" style="background: #ff4d94; font-weight: bold; width:100%">{{ $i->nomeCategoria }}</a>
+          <a class="btn-large" href="/Categoria/{{ $i->nomeCategoria }}" style="background: #ff4d94; font-weight: bold; width:100%">{{ $i->nomeCategoria }}</a>
         </div>
       </div>
     @endif
