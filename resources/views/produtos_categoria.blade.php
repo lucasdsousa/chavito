@@ -6,7 +6,7 @@
     <h1>Catálogo</h1>
     <div class="row">
         @foreach($chav as $i)
-                <div class="col s12 m7 l4">
+                <div class="col s6 m7 l4">
                     <div class="card hoverable">
                         <div class="card-image">
                             <img src="{{ asset($i->image_name) }}">
@@ -17,7 +17,7 @@
                             <p>{{ $i->descricao }}</p>
                         </div>
                         <div class="card-action">
-                            <a class="waves-effect waves-light btn-small pink" href="/Pedido/{{$i->slug}}" style="font-weight: bold">Peça Já o Seu!</a>
+                            <a class="waves-effect waves-light btn-small pink" href="/Pedido/{{$i->slug}}" style="font-weight: bold">Personalize Aqui</a>
                         </div>
                     </div>
                 </div>       

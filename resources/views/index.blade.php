@@ -47,10 +47,10 @@
 </style>
 
 
-<div class="row">
+<div class="row center-align">
 @foreach($cats as $i)
     @if(substr($i->imagemExemplo, 7, -1) != '')
-      <div class="container-img col s3">
+      <div class="container-img col s9 m3 l3">
         <img class="image z-depth-4" src="{{ asset($i->imagemExemplo) }}" alt="" style="width:100%">
         <div class="middle">
           <a class="btn-large" href="/Categoria/{{ $i->nomeCategoria }}" style="background: #ff4d94; font-weight: bold; width:100%">{{ $i->nomeCategoria }}</a>
@@ -68,7 +68,8 @@
 
 <div class="container center">
   <h3>Bem Vindo(a)!</h3>
-  <h5>Apresentamos o nosso site. Totalmente interativo, moderno e de fácil navegação. Tem como objetivo mostrar a diversidade dos produtos e serviços oferecidos, nele, você também poderá solicitar orçamentos on-line. Sem dúvida é um canal que nos aproxima dos nossos atuais e futuros clientes. Aproveite</h5>
+  <h5>Seja bem vindo ! Se você ama presentear as pessoas ao seu redor com peças exclusivas e cheias de significado, está no lugar certo. 
+    A chavito tem a proposta de fabricar itens únicos  e personalizados por você com o cuidado e qualidade que você merece.</h5>
 </div>
 
 <br><br>
