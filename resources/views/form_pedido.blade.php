@@ -56,7 +56,7 @@
             @else
 
               <div>                      
-                <x-label for="image" :value="__('Escolha a imagem do seu Chavito)" />
+                <x-label for="image" :value="__('Escolha a imagem do seu Chavito')" />
 
                 <input id="image" class="block mt-1 w-full" type="file" name="image" autofocus required/>
               </div>

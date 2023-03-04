@@ -61,7 +61,8 @@ class ChavitoController extends Controller
     {
         $uri = $request->getRequestUri();
 
-        $chav = DB::table('chavitos')->where('id', '<=', '21')->paginate(9);
+        $chav = DB::table('chavitos')->get();
+        //$chav = DB::table('chavitos')->where('id', '<=', '21')->paginate(9);
         $chav3 = DB::table('chavitos')->whereBetween('id', ['22', '27'])->get();
         $chav4 = DB::table('chavitos')->whereBetween('id', ['27', '35'])->get();
         $chav5 = DB::table('chavitos')->whereBetween('id', ['36', '38'])->get();
